@@ -1,11 +1,12 @@
 C:\Users\MeatGrinder\Desktop\ChemBotOmega\ChemBotOmega\bin\Release\ChemBotOmega.exe.config
 C:\Users\MeatGrinder\Desktop\ChemBotOmega\ChemBotOmega\bin\Release\ChemBotOmega.exe
-C:\Users\MeatGrinder\Desktop\ChemBotOmega\ChemBotOmega\bin\Release\ChemBotOmega.pdb
+C:\Users\MeatGrinder\Desktop\ChemBotOmega\ChemBotOmega\obj\Release\ChemBotControl.csprojAssemblyReference.cache
 C:\Users\MeatGrinder\Desktop\ChemBotOmega\ChemBotOmega\obj\Release\ChemBotOmega.ChemBotForm.resources
 C:\Users\MeatGrinder\Desktop\ChemBotOmega\ChemBotOmega\obj\Release\ChemBotOmega.Properties.Resources.resources
 C:\Users\MeatGrinder\Desktop\ChemBotOmega\ChemBotOmega\obj\Release\ChemBotOmega.Setting.resources
 C:\Users\MeatGrinder\Desktop\ChemBotOmega\ChemBotOmega\obj\Release\ChemBotOmega.StartScreen.resources
-C:\Users\MeatGrinder\Desktop\ChemBotOmega\ChemBotOmega\obj\Release\ChemBotOmega.csproj.GenerateResource.cache
-C:\Users\MeatGrinder\Desktop\ChemBotOmega\ChemBotOmega\obj\Release\ChemBotOmega.csproj.CoreCompileInputs.cache
+C:\Users\MeatGrinder\Desktop\ChemBotOmega\ChemBotOmega\obj\Release\ChemBotControl.csproj.GenerateResource.cache
+C:\Users\MeatGrinder\Desktop\ChemBotOmega\ChemBotOmega\obj\Release\ChemBotControl.csproj.CoreCompileInputs.cache
 C:\Users\MeatGrinder\Desktop\ChemBotOmega\ChemBotOmega\obj\Release\ChemBotOmega.exe
 C:\Users\MeatGrinder\Desktop\ChemBotOmega\ChemBotOmega\obj\Release\ChemBotOmega.pdb
+C:\Users\MeatGrinder\Desktop\ChemBotOmega\ChemBotOmega\bin\Release\ChemBotOmega.pdb

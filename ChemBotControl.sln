@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChemBotOmega", "ChemBotOmega\ChemBotOmega.csproj", "{B660B627-1E4D-4B10-B5A7-E3A24D6F066F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChemBotControl", "ChemBotOmega\ChemBotControl.csproj", "{B660B627-1E4D-4B10-B5A7-E3A24D6F066F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -11,6 +11,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace ChemBotOmega
 {
@@ -120,6 +121,7 @@ namespace ChemBotOmega
             bs.Add(state);
 
             StateDataGridView.DataSource = bs;
+            StateDataGridView.Columns[4].Visible = false;
         }
 
         protected override void OnClosed(EventArgs e)
@@ -211,20 +213,17 @@ namespace ChemBotOmega
             {
                 case 1:
                         CoordX = CoordX + scale;
-                        SendGCode("G01 " + "X" + CoordX + " F" + TravelSpeed);
-                    SendGCode("M114");
+                        SendGCode("G01 " + "X" + CoordX + " F" + TravelSpeed + Environment.NewLine + " M114" + Environment.NewLine);
                     break;
 
                 case 2:
                         CoordY = CoordY + scale;
-                        SendGCode("G01 " + "Y" + CoordY + " F" + TravelSpeed);
-                    SendGCode("M114");
+                        SendGCode("G01 " + "Y" + CoordY + " F" + TravelSpeed + Environment.NewLine + " M114" + Environment.NewLine);
                     break;
 
                 case 3:
                         CoordZ = CoordZ + scale;
-                        SendGCode("G01 " + "Z" + CoordZ + " F" + TravelSpeed);
-                    SendGCode("M114");
+                        SendGCode("G01 " + "Z" + CoordZ + " F" + TravelSpeed + Environment.NewLine + " M114" + Environment.NewLine);
                     break;
             }
         }
@@ -318,8 +317,7 @@ namespace ChemBotOmega
             double x;
             if (double.TryParse(XPositionTextBox.Text, out x))
             {
-                SendGCode("G01 X" + x);
-                SendGCode("M114");
+                SendGCode("G01 X" + x + Environment.NewLine + " M114" + Environment.NewLine);
             }
             else
             {
@@ -332,8 +330,7 @@ namespace ChemBotOmega
             double y;
             if (double.TryParse(YPositionTextBox.Text, out y))
             {
-                SendGCode("G01 Y" + y);
-                SendGCode("M114");
+                SendGCode("G01 Y" + y + Environment.NewLine + " M114" + Environment.NewLine);
             }
             else
             {
@@ -346,8 +343,7 @@ namespace ChemBotOmega
             double z;
             if (double.TryParse(ZPositionTextBox.Text, out z))
             {
-                SendGCode("G01 Z" + z);
-                SendGCode("M114");
+                SendGCode("G01 Z" + z + Environment.NewLine + " M114" + Environment.NewLine);
             }
             else
             {
@@ -487,7 +483,6 @@ namespace ChemBotOmega
                 gcode = gcode + "G91" + Environment.NewLine;
 
                 double diagonal = Math.Sqrt(Math.Abs(distX) * Math.Abs(distX) + Math.Abs(distY) * Math.Abs(distY));
-                MessageBox.Show((diagonal / Multiplier).ToString());
                 gcode = gcode + "G01 X" + distX + " Y" + distY + " E" + (diagonal / Multiplier) + " F" + PrintSpeed;
             }
             
@@ -553,7 +548,6 @@ namespace ChemBotOmega
                                 gcode = gcode + "G01 X" + distX + " E" + (distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
                                 distX -= LineWidth;
                                 counter = 2;
-                                MessageBox.Show(distY.ToString());
                             }
                             break;
 
@@ -817,25 +811,15 @@ namespace ChemBotOmega
 
         private void DisconnectButton_Click(object sender, EventArgs e)
         {
-            port.Dispose();
-            try
-            {
-                port = new SerialPort(comport, 250000, Parity.None, 8, StopBits.One)
-                {
-                    Handshake = Handshake.None
-                };
-                this.port.DataReceived += new SerialDataReceivedEventHandler(DataReturnFromMachine);
-                this.port.Open();
-            }
-            catch (Exception ex)
-            {
-                if (port != null)
-                {
-                    port.Dispose();
-                }
+            bs.Clear();
 
-                MessageBox.Show("Error Message: " + Environment.NewLine + ex.Message);
-            }
+            State state = new State
+            {
+                StartPoint = Tuple.Create(0.00, 0.00),
+                ZPoint = Tuple.Create(10.00, Double.NaN)
+            };
+
+            bs.Add(state);
         }
 
         private void PreheatButton_Click(object sender, EventArgs e)
@@ -938,6 +922,11 @@ namespace ChemBotOmega
                 bs.Add(state);
                 StateDataGridView.Refresh();
             }
+        }
+
+        private void openProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

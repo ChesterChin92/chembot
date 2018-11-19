@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChemBotOmega
 {
-    class State
+    public class State
     {
         public Tuple<double, double> StartPoint { get; set; } = Tuple.Create(Double.NaN, Double.NaN);
         public Tuple<double, double> EndPoint { get; set; } = Tuple.Create(Double.NaN, Double.NaN);

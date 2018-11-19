@@ -52,8 +52,14 @@ namespace ChemBotOmega
             else
             {
                 new ChemBotForm(ComPortComboBox.Text).Show();
-                Close();
+                Visible = false;
             }
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            Application.Exit();
         }
     }
 }

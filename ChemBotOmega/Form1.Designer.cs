@@ -122,6 +122,7 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -133,8 +134,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1063, 679);
-            this.splitContainer1.SplitterDistance = 28;
+            this.splitContainer1.Size = new System.Drawing.Size(1184, 629);
+            this.splitContainer1.SplitterDistance = 31;
             this.splitContainer1.TabIndex = 0;
             // 
             // menuStrip1
@@ -145,7 +146,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1063, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1184, 31);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -154,13 +155,13 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openProjectToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 27);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // openProjectToolStripMenuItem
             // 
             this.openProjectToolStripMenuItem.Name = "openProjectToolStripMenuItem";
-            this.openProjectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openProjectToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.openProjectToolStripMenuItem.Text = "Load GCode";
             this.openProjectToolStripMenuItem.Click += new System.EventHandler(this.openProjectToolStripMenuItem_Click);
             // 
@@ -168,6 +169,7 @@
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer2.IsSplitterFixed = true;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
             this.splitContainer2.Name = "splitContainer2";
             // 
@@ -179,8 +181,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.StateDataGridView);
-            this.splitContainer2.Size = new System.Drawing.Size(1063, 647);
-            this.splitContainer2.SplitterDistance = 323;
+            this.splitContainer2.Size = new System.Drawing.Size(1184, 594);
+            this.splitContainer2.SplitterDistance = 320;
             this.splitContainer2.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -195,11 +197,11 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.21101F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 53.02752F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.94495F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(323, 647);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(320, 594);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -224,14 +226,14 @@
             this.tableLayoutPanel2.Controls.Add(this.ExportButton, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.PreheatButton, 1, 3);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 197);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 199);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 4;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(317, 317);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(314, 308);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // SettingButton
@@ -240,9 +242,9 @@
             this.SettingButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("SettingButton.BackgroundImage")));
             this.SettingButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.SettingButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SettingButton.Location = new System.Drawing.Point(240, 240);
+            this.SettingButton.Location = new System.Drawing.Point(237, 234);
             this.SettingButton.Name = "SettingButton";
-            this.SettingButton.Size = new System.Drawing.Size(74, 74);
+            this.SettingButton.Size = new System.Drawing.Size(74, 71);
             this.SettingButton.TabIndex = 27;
             this.SettingButton.UseVisualStyleBackColor = false;
             this.SettingButton.Click += new System.EventHandler(this.SettingButton_Click_1);
@@ -253,9 +255,9 @@
             this.DisconnectButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("DisconnectButton.BackgroundImage")));
             this.DisconnectButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.DisconnectButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DisconnectButton.Location = new System.Drawing.Point(82, 240);
+            this.DisconnectButton.Location = new System.Drawing.Point(81, 234);
             this.DisconnectButton.Name = "DisconnectButton";
-            this.DisconnectButton.Size = new System.Drawing.Size(73, 74);
+            this.DisconnectButton.Size = new System.Drawing.Size(72, 71);
             this.DisconnectButton.TabIndex = 23;
             this.DisconnectButton.UseVisualStyleBackColor = false;
             this.DisconnectButton.Click += new System.EventHandler(this.DisconnectButton_Click);
@@ -266,9 +268,9 @@
             this.CArcButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("CArcButton.BackgroundImage")));
             this.CArcButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.CArcButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CArcButton.Location = new System.Drawing.Point(3, 161);
+            this.CArcButton.Location = new System.Drawing.Point(3, 157);
             this.CArcButton.Name = "CArcButton";
-            this.CArcButton.Size = new System.Drawing.Size(73, 73);
+            this.CArcButton.Size = new System.Drawing.Size(72, 71);
             this.CArcButton.TabIndex = 17;
             this.CArcButton.UseVisualStyleBackColor = false;
             this.CArcButton.Click += new System.EventHandler(this.CArcButton_Click);
@@ -279,9 +281,9 @@
             this.ArcButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ArcButton.BackgroundImage")));
             this.ArcButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ArcButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ArcButton.Location = new System.Drawing.Point(240, 82);
+            this.ArcButton.Location = new System.Drawing.Point(237, 80);
             this.ArcButton.Name = "ArcButton";
-            this.ArcButton.Size = new System.Drawing.Size(74, 73);
+            this.ArcButton.Size = new System.Drawing.Size(74, 71);
             this.ArcButton.TabIndex = 16;
             this.ArcButton.UseVisualStyleBackColor = false;
             this.ArcButton.Click += new System.EventHandler(this.ArcButton_Click);
@@ -294,7 +296,7 @@
             this.HomeButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.HomeButton.Location = new System.Drawing.Point(3, 3);
             this.HomeButton.Name = "HomeButton";
-            this.HomeButton.Size = new System.Drawing.Size(73, 73);
+            this.HomeButton.Size = new System.Drawing.Size(72, 71);
             this.HomeButton.TabIndex = 0;
             this.HomeButton.UseVisualStyleBackColor = false;
             this.HomeButton.Click += new System.EventHandler(this.HomeButton_Click);
@@ -305,9 +307,9 @@
             this.TravelButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TravelButton.BackgroundImage")));
             this.TravelButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.TravelButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TravelButton.Location = new System.Drawing.Point(82, 3);
+            this.TravelButton.Location = new System.Drawing.Point(81, 3);
             this.TravelButton.Name = "TravelButton";
-            this.TravelButton.Size = new System.Drawing.Size(73, 73);
+            this.TravelButton.Size = new System.Drawing.Size(72, 71);
             this.TravelButton.TabIndex = 1;
             this.TravelButton.UseVisualStyleBackColor = false;
             this.TravelButton.Click += new System.EventHandler(this.TravelButton_Click);
@@ -318,9 +320,9 @@
             this.DotButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("DotButton.BackgroundImage")));
             this.DotButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.DotButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DotButton.Location = new System.Drawing.Point(161, 3);
+            this.DotButton.Location = new System.Drawing.Point(159, 3);
             this.DotButton.Name = "DotButton";
-            this.DotButton.Size = new System.Drawing.Size(73, 73);
+            this.DotButton.Size = new System.Drawing.Size(72, 71);
             this.DotButton.TabIndex = 2;
             this.DotButton.UseVisualStyleBackColor = false;
             this.DotButton.Click += new System.EventHandler(this.DotButton_Click);
@@ -331,9 +333,9 @@
             this.LineButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("LineButton.BackgroundImage")));
             this.LineButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.LineButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LineButton.Location = new System.Drawing.Point(240, 3);
+            this.LineButton.Location = new System.Drawing.Point(237, 3);
             this.LineButton.Name = "LineButton";
-            this.LineButton.Size = new System.Drawing.Size(74, 73);
+            this.LineButton.Size = new System.Drawing.Size(74, 71);
             this.LineButton.TabIndex = 3;
             this.LineButton.UseVisualStyleBackColor = false;
             this.LineButton.Click += new System.EventHandler(this.LineButton_Click);
@@ -344,9 +346,9 @@
             this.CoilButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("CoilButton.BackgroundImage")));
             this.CoilButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.CoilButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CoilButton.Location = new System.Drawing.Point(3, 82);
+            this.CoilButton.Location = new System.Drawing.Point(3, 80);
             this.CoilButton.Name = "CoilButton";
-            this.CoilButton.Size = new System.Drawing.Size(73, 73);
+            this.CoilButton.Size = new System.Drawing.Size(72, 71);
             this.CoilButton.TabIndex = 4;
             this.CoilButton.UseVisualStyleBackColor = false;
             this.CoilButton.Click += new System.EventHandler(this.CoilButton_Click);
@@ -357,9 +359,9 @@
             this.ZigZagButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ZigZagButton.BackgroundImage")));
             this.ZigZagButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ZigZagButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ZigZagButton.Location = new System.Drawing.Point(82, 82);
+            this.ZigZagButton.Location = new System.Drawing.Point(81, 80);
             this.ZigZagButton.Name = "ZigZagButton";
-            this.ZigZagButton.Size = new System.Drawing.Size(73, 73);
+            this.ZigZagButton.Size = new System.Drawing.Size(72, 71);
             this.ZigZagButton.TabIndex = 5;
             this.ZigZagButton.UseVisualStyleBackColor = false;
             this.ZigZagButton.Click += new System.EventHandler(this.ZigZagButton_Click);
@@ -370,9 +372,9 @@
             this.CircleButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("CircleButton.BackgroundImage")));
             this.CircleButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.CircleButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CircleButton.Location = new System.Drawing.Point(161, 82);
+            this.CircleButton.Location = new System.Drawing.Point(159, 80);
             this.CircleButton.Name = "CircleButton";
-            this.CircleButton.Size = new System.Drawing.Size(73, 73);
+            this.CircleButton.Size = new System.Drawing.Size(72, 71);
             this.CircleButton.TabIndex = 6;
             this.CircleButton.UseVisualStyleBackColor = false;
             this.CircleButton.Click += new System.EventHandler(this.CircleButton_Click);
@@ -383,9 +385,9 @@
             this.ExportButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ExportButton.BackgroundImage")));
             this.ExportButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ExportButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ExportButton.Location = new System.Drawing.Point(3, 240);
+            this.ExportButton.Location = new System.Drawing.Point(3, 234);
             this.ExportButton.Name = "ExportButton";
-            this.ExportButton.Size = new System.Drawing.Size(73, 74);
+            this.ExportButton.Size = new System.Drawing.Size(72, 71);
             this.ExportButton.TabIndex = 12;
             this.ExportButton.UseVisualStyleBackColor = false;
             this.ExportButton.Click += new System.EventHandler(this.ExportButton_Click);
@@ -396,9 +398,9 @@
             this.PreheatButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PreheatButton.BackgroundImage")));
             this.PreheatButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PreheatButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PreheatButton.Location = new System.Drawing.Point(161, 240);
+            this.PreheatButton.Location = new System.Drawing.Point(159, 234);
             this.PreheatButton.Name = "PreheatButton";
-            this.PreheatButton.Size = new System.Drawing.Size(73, 74);
+            this.PreheatButton.Size = new System.Drawing.Size(72, 71);
             this.PreheatButton.TabIndex = 21;
             this.PreheatButton.UseVisualStyleBackColor = false;
             this.PreheatButton.Click += new System.EventHandler(this.PreheatButton_Click);
@@ -426,7 +428,7 @@
             this.CoordinateTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.CoordinateTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.CoordinateTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.CoordinateTableLayout.Size = new System.Drawing.Size(317, 188);
+            this.CoordinateTableLayout.Size = new System.Drawing.Size(314, 190);
             this.CoordinateTableLayout.TabIndex = 1;
             // 
             // tableLayoutPanel3
@@ -441,7 +443,7 @@
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(63, 50);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(52, 46);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // XLabel
@@ -450,7 +452,7 @@
             this.XLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.XLabel.Location = new System.Drawing.Point(3, 0);
             this.XLabel.Name = "XLabel";
-            this.XLabel.Size = new System.Drawing.Size(57, 25);
+            this.XLabel.Size = new System.Drawing.Size(46, 23);
             this.XLabel.TabIndex = 0;
             this.XLabel.Text = "X:";
             this.XLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -459,9 +461,9 @@
             // 
             this.XValLabel.AutoSize = true;
             this.XValLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.XValLabel.Location = new System.Drawing.Point(3, 25);
+            this.XValLabel.Location = new System.Drawing.Point(3, 23);
             this.XValLabel.Name = "XValLabel";
-            this.XValLabel.Size = new System.Drawing.Size(57, 25);
+            this.XValLabel.Size = new System.Drawing.Size(46, 23);
             this.XValLabel.TabIndex = 1;
             this.XValLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -472,12 +474,12 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.Controls.Add(this.YLabel, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.YValLabel, 0, 1);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 65);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 66);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(63, 50);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(52, 46);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
             // YLabel
@@ -486,7 +488,7 @@
             this.YLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.YLabel.Location = new System.Drawing.Point(3, 0);
             this.YLabel.Name = "YLabel";
-            this.YLabel.Size = new System.Drawing.Size(57, 25);
+            this.YLabel.Size = new System.Drawing.Size(46, 23);
             this.YLabel.TabIndex = 0;
             this.YLabel.Text = "Y:";
             this.YLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -495,9 +497,9 @@
             // 
             this.YValLabel.AutoSize = true;
             this.YValLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.YValLabel.Location = new System.Drawing.Point(3, 25);
+            this.YValLabel.Location = new System.Drawing.Point(3, 23);
             this.YValLabel.Name = "YValLabel";
-            this.YValLabel.Size = new System.Drawing.Size(57, 25);
+            this.YValLabel.Size = new System.Drawing.Size(46, 23);
             this.YValLabel.TabIndex = 1;
             this.YValLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -508,12 +510,12 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel5.Controls.Add(this.ZLabel, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.ZValLabel, 0, 1);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 127);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 129);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(63, 50);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(52, 47);
             this.tableLayoutPanel5.TabIndex = 2;
             // 
             // ZLabel
@@ -522,7 +524,7 @@
             this.ZLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ZLabel.Location = new System.Drawing.Point(3, 0);
             this.ZLabel.Name = "ZLabel";
-            this.ZLabel.Size = new System.Drawing.Size(57, 25);
+            this.ZLabel.Size = new System.Drawing.Size(46, 23);
             this.ZLabel.TabIndex = 0;
             this.ZLabel.Text = "Z:";
             this.ZLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -531,9 +533,9 @@
             // 
             this.ZValLabel.AutoSize = true;
             this.ZValLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ZValLabel.Location = new System.Drawing.Point(3, 25);
+            this.ZValLabel.Location = new System.Drawing.Point(3, 23);
             this.ZValLabel.Name = "ZValLabel";
-            this.ZValLabel.Size = new System.Drawing.Size(57, 25);
+            this.ZValLabel.Size = new System.Drawing.Size(46, 24);
             this.ZValLabel.TabIndex = 1;
             this.ZValLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -545,12 +547,12 @@
             this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel12, 0, 1);
             this.tableLayoutPanel6.Controls.Add(this.XScaleComboBox, 0, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(72, 3);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(71, 3);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 2;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.28571F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.71429F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(125, 56);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(124, 57);
             this.tableLayoutPanel6.TabIndex = 3;
             // 
             // tableLayoutPanel12
@@ -561,11 +563,11 @@
             this.tableLayoutPanel12.Controls.Add(this.LeftButton, 0, 0);
             this.tableLayoutPanel12.Controls.Add(this.RightButton, 1, 0);
             this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 24);
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 25);
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
             this.tableLayoutPanel12.RowCount = 1;
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel12.Size = new System.Drawing.Size(119, 29);
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(118, 29);
             this.tableLayoutPanel12.TabIndex = 0;
             // 
             // LeftButton
@@ -584,7 +586,7 @@
             this.RightButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightButton.Location = new System.Drawing.Point(62, 3);
             this.RightButton.Name = "RightButton";
-            this.RightButton.Size = new System.Drawing.Size(54, 23);
+            this.RightButton.Size = new System.Drawing.Size(53, 23);
             this.RightButton.TabIndex = 1;
             this.RightButton.Text = "Right";
             this.RightButton.UseVisualStyleBackColor = true;
@@ -596,7 +598,7 @@
             this.XScaleComboBox.FormattingEnabled = true;
             this.XScaleComboBox.Location = new System.Drawing.Point(3, 3);
             this.XScaleComboBox.Name = "XScaleComboBox";
-            this.XScaleComboBox.Size = new System.Drawing.Size(119, 21);
+            this.XScaleComboBox.Size = new System.Drawing.Size(118, 21);
             this.XScaleComboBox.TabIndex = 1;
             // 
             // tableLayoutPanel7
@@ -607,12 +609,12 @@
             this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel13, 0, 1);
             this.tableLayoutPanel7.Controls.Add(this.YScaleComboBox, 0, 0);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(72, 65);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(71, 66);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 2;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.28571F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.71429F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(125, 56);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(124, 57);
             this.tableLayoutPanel7.TabIndex = 4;
             // 
             // tableLayoutPanel13
@@ -623,11 +625,11 @@
             this.tableLayoutPanel13.Controls.Add(this.BackButton, 0, 0);
             this.tableLayoutPanel13.Controls.Add(this.ForwardButton, 1, 0);
             this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel13.Location = new System.Drawing.Point(3, 24);
+            this.tableLayoutPanel13.Location = new System.Drawing.Point(3, 25);
             this.tableLayoutPanel13.Name = "tableLayoutPanel13";
             this.tableLayoutPanel13.RowCount = 1;
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel13.Size = new System.Drawing.Size(119, 29);
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(118, 29);
             this.tableLayoutPanel13.TabIndex = 0;
             // 
             // BackButton
@@ -647,7 +649,7 @@
             this.ForwardButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ForwardButton.Location = new System.Drawing.Point(62, 3);
             this.ForwardButton.Name = "ForwardButton";
-            this.ForwardButton.Size = new System.Drawing.Size(54, 23);
+            this.ForwardButton.Size = new System.Drawing.Size(53, 23);
             this.ForwardButton.TabIndex = 1;
             this.ForwardButton.Text = "Forward";
             this.ForwardButton.UseVisualStyleBackColor = true;
@@ -659,7 +661,7 @@
             this.YScaleComboBox.FormattingEnabled = true;
             this.YScaleComboBox.Location = new System.Drawing.Point(3, 3);
             this.YScaleComboBox.Name = "YScaleComboBox";
-            this.YScaleComboBox.Size = new System.Drawing.Size(119, 21);
+            this.YScaleComboBox.Size = new System.Drawing.Size(118, 21);
             this.YScaleComboBox.TabIndex = 1;
             // 
             // tableLayoutPanel8
@@ -670,12 +672,12 @@
             this.tableLayoutPanel8.Controls.Add(this.tableLayoutPanel14, 0, 1);
             this.tableLayoutPanel8.Controls.Add(this.ZScaleComboBox, 0, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(72, 127);
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(71, 129);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 2;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.65517F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.34483F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(125, 58);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(124, 58);
             this.tableLayoutPanel8.TabIndex = 5;
             // 
             // tableLayoutPanel14
@@ -690,7 +692,7 @@
             this.tableLayoutPanel14.Name = "tableLayoutPanel14";
             this.tableLayoutPanel14.RowCount = 1;
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel14.Size = new System.Drawing.Size(119, 30);
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(118, 30);
             this.tableLayoutPanel14.TabIndex = 0;
             // 
             // DownButton
@@ -709,7 +711,7 @@
             this.UpButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.UpButton.Location = new System.Drawing.Point(62, 3);
             this.UpButton.Name = "UpButton";
-            this.UpButton.Size = new System.Drawing.Size(54, 24);
+            this.UpButton.Size = new System.Drawing.Size(53, 24);
             this.UpButton.TabIndex = 1;
             this.UpButton.Text = "Up";
             this.UpButton.UseVisualStyleBackColor = true;
@@ -721,7 +723,7 @@
             this.ZScaleComboBox.FormattingEnabled = true;
             this.ZScaleComboBox.Location = new System.Drawing.Point(3, 3);
             this.ZScaleComboBox.Name = "ZScaleComboBox";
-            this.ZScaleComboBox.Size = new System.Drawing.Size(119, 21);
+            this.ZScaleComboBox.Size = new System.Drawing.Size(118, 21);
             this.ZScaleComboBox.TabIndex = 1;
             // 
             // tableLayoutPanel9
@@ -732,12 +734,12 @@
             this.tableLayoutPanel9.Controls.Add(this.XPositionTextBox, 0, 0);
             this.tableLayoutPanel9.Controls.Add(this.GoXButton, 0, 1);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(203, 3);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(201, 3);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 2;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(111, 56);
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(110, 57);
             this.tableLayoutPanel9.TabIndex = 6;
             // 
             // XPositionTextBox
@@ -745,7 +747,7 @@
             this.XPositionTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.XPositionTextBox.Location = new System.Drawing.Point(3, 3);
             this.XPositionTextBox.Name = "XPositionTextBox";
-            this.XPositionTextBox.Size = new System.Drawing.Size(105, 20);
+            this.XPositionTextBox.Size = new System.Drawing.Size(104, 20);
             this.XPositionTextBox.TabIndex = 0;
             // 
             // GoXButton
@@ -753,7 +755,7 @@
             this.GoXButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GoXButton.Location = new System.Drawing.Point(3, 31);
             this.GoXButton.Name = "GoXButton";
-            this.GoXButton.Size = new System.Drawing.Size(105, 22);
+            this.GoXButton.Size = new System.Drawing.Size(104, 23);
             this.GoXButton.TabIndex = 1;
             this.GoXButton.Text = "Go";
             this.GoXButton.UseVisualStyleBackColor = true;
@@ -767,12 +769,12 @@
             this.tableLayoutPanel10.Controls.Add(this.YPositionTextBox, 0, 0);
             this.tableLayoutPanel10.Controls.Add(this.GoYButton, 0, 1);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(203, 65);
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(201, 66);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 2;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 54F));
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 46F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(111, 56);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(110, 57);
             this.tableLayoutPanel10.TabIndex = 7;
             // 
             // YPositionTextBox
@@ -780,7 +782,7 @@
             this.YPositionTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.YPositionTextBox.Location = new System.Drawing.Point(3, 3);
             this.YPositionTextBox.Name = "YPositionTextBox";
-            this.YPositionTextBox.Size = new System.Drawing.Size(105, 20);
+            this.YPositionTextBox.Size = new System.Drawing.Size(104, 20);
             this.YPositionTextBox.TabIndex = 0;
             // 
             // GoYButton
@@ -788,7 +790,7 @@
             this.GoYButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GoYButton.Location = new System.Drawing.Point(3, 33);
             this.GoYButton.Name = "GoYButton";
-            this.GoYButton.Size = new System.Drawing.Size(105, 20);
+            this.GoYButton.Size = new System.Drawing.Size(104, 21);
             this.GoYButton.TabIndex = 1;
             this.GoYButton.Text = "Go";
             this.GoYButton.UseVisualStyleBackColor = true;
@@ -801,12 +803,12 @@
             this.tableLayoutPanel11.Controls.Add(this.ZPositionTextBox, 0, 0);
             this.tableLayoutPanel11.Controls.Add(this.GoZButton, 0, 1);
             this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel11.Location = new System.Drawing.Point(203, 127);
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(201, 129);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.RowCount = 2;
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(111, 58);
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(110, 58);
             this.tableLayoutPanel11.TabIndex = 8;
             // 
             // ZPositionTextBox
@@ -814,7 +816,7 @@
             this.ZPositionTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ZPositionTextBox.Location = new System.Drawing.Point(3, 3);
             this.ZPositionTextBox.Name = "ZPositionTextBox";
-            this.ZPositionTextBox.Size = new System.Drawing.Size(105, 20);
+            this.ZPositionTextBox.Size = new System.Drawing.Size(104, 20);
             this.ZPositionTextBox.TabIndex = 0;
             // 
             // GoZButton
@@ -822,7 +824,7 @@
             this.GoZButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GoZButton.Location = new System.Drawing.Point(3, 32);
             this.GoZButton.Name = "GoZButton";
-            this.GoZButton.Size = new System.Drawing.Size(105, 23);
+            this.GoZButton.Size = new System.Drawing.Size(104, 23);
             this.GoZButton.TabIndex = 1;
             this.GoZButton.Text = "Go";
             this.GoZButton.UseVisualStyleBackColor = true;
@@ -832,7 +834,7 @@
             // 
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer3.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer3.Location = new System.Drawing.Point(3, 520);
+            this.splitContainer3.Location = new System.Drawing.Point(3, 513);
             this.splitContainer3.Name = "splitContainer3";
             this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -843,7 +845,7 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.OutPutTextBox);
-            this.splitContainer3.Size = new System.Drawing.Size(317, 124);
+            this.splitContainer3.Size = new System.Drawing.Size(314, 78);
             this.splitContainer3.SplitterDistance = 25;
             this.splitContainer3.TabIndex = 2;
             // 
@@ -853,7 +855,7 @@
             this.OutPutLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.OutPutLabel.Location = new System.Drawing.Point(0, 0);
             this.OutPutLabel.Name = "OutPutLabel";
-            this.OutPutLabel.Size = new System.Drawing.Size(317, 25);
+            this.OutPutLabel.Size = new System.Drawing.Size(314, 25);
             this.OutPutLabel.TabIndex = 0;
             this.OutPutLabel.Text = "Output:";
             this.OutPutLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -864,7 +866,7 @@
             this.OutPutTextBox.Location = new System.Drawing.Point(0, 0);
             this.OutPutTextBox.Multiline = true;
             this.OutPutTextBox.Name = "OutPutTextBox";
-            this.OutPutTextBox.Size = new System.Drawing.Size(317, 95);
+            this.OutPutTextBox.Size = new System.Drawing.Size(314, 49);
             this.OutPutTextBox.TabIndex = 0;
             // 
             // StateDataGridView
@@ -873,7 +875,7 @@
             this.StateDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.StateDataGridView.Location = new System.Drawing.Point(0, 0);
             this.StateDataGridView.Name = "StateDataGridView";
-            this.StateDataGridView.Size = new System.Drawing.Size(736, 647);
+            this.StateDataGridView.Size = new System.Drawing.Size(860, 594);
             this.StateDataGridView.TabIndex = 0;
             this.StateDataGridView.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.StateDataGridView_UserDeletingRow);
             // 
@@ -886,9 +888,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1063, 681);
+            this.ClientSize = new System.Drawing.Size(1184, 631);
             this.Controls.Add(this.splitContainer1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ChemBotForm";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
             this.Text = "ChemBot Control";

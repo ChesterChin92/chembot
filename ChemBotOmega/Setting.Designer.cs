@@ -44,7 +44,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.PrintSpeedTextBox = new System.Windows.Forms.TextBox();
-            this.LineWidthTextBox = new System.Windows.Forms.TextBox();
             this.ZLiftTextBox = new System.Windows.Forms.TextBox();
             this.PrimeExtrusionTextBox = new System.Windows.Forms.TextBox();
             this.PrimeExtrusion2TextBox = new System.Windows.Forms.TextBox();
@@ -56,20 +55,18 @@
             this.DotSizeTextBox = new System.Windows.Forms.TextBox();
             this.DotSpeedTextBox = new System.Windows.Forms.TextBox();
             this.TravelSpeedTextBox = new System.Windows.Forms.TextBox();
+            this.LineWidthComboBox = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.CancelButton = new System.Windows.Forms.Button();
             this.OKButton = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label13 = new System.Windows.Forms.Label();
             this.StartCodeTextBox = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.StartCodeCancelButton = new System.Windows.Forms.Button();
             this.StartCodeOKButton = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
-            this.EndCodeCancelButton = new System.Windows.Forms.Button();
             this.EndCodeOKButton = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.EndCodeTextBox = new System.Windows.Forms.TextBox();
@@ -143,7 +140,6 @@
             this.tableLayoutPanel2.Controls.Add(this.label11, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.label12, 2, 1);
             this.tableLayoutPanel2.Controls.Add(this.PrintSpeedTextBox, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.LineWidthTextBox, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.ZLiftTextBox, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.PrimeExtrusionTextBox, 1, 3);
             this.tableLayoutPanel2.Controls.Add(this.PrimeExtrusion2TextBox, 1, 4);
@@ -155,6 +151,7 @@
             this.tableLayoutPanel2.Controls.Add(this.DotSizeTextBox, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.DotSpeedTextBox, 3, 1);
             this.tableLayoutPanel2.Controls.Add(this.TravelSpeedTextBox, 3, 2);
+            this.tableLayoutPanel2.Controls.Add(this.LineWidthComboBox, 1, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -301,14 +298,6 @@
             this.PrintSpeedTextBox.Size = new System.Drawing.Size(211, 20);
             this.PrintSpeedTextBox.TabIndex = 12;
             // 
-            // LineWidthTextBox
-            // 
-            this.LineWidthTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LineWidthTextBox.Location = new System.Drawing.Point(96, 30);
-            this.LineWidthTextBox.Name = "LineWidthTextBox";
-            this.LineWidthTextBox.Size = new System.Drawing.Size(211, 20);
-            this.LineWidthTextBox.TabIndex = 13;
-            // 
             // ZLiftTextBox
             // 
             this.ZLiftTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -400,9 +389,18 @@
             this.TravelSpeedTextBox.Size = new System.Drawing.Size(212, 20);
             this.TravelSpeedTextBox.TabIndex = 25;
             // 
+            // LineWidthComboBox
+            // 
+            this.LineWidthComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LineWidthComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LineWidthComboBox.FormattingEnabled = true;
+            this.LineWidthComboBox.Location = new System.Drawing.Point(96, 30);
+            this.LineWidthComboBox.Name = "LineWidthComboBox";
+            this.LineWidthComboBox.Size = new System.Drawing.Size(211, 21);
+            this.LineWidthComboBox.TabIndex = 26;
+            // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.CancelButton);
             this.flowLayoutPanel1.Controls.Add(this.OKButton);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 280);
@@ -411,19 +409,9 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(621, 43);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
-            // CancelButton
-            // 
-            this.CancelButton.Location = new System.Drawing.Point(543, 3);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(75, 38);
-            this.CancelButton.TabIndex = 0;
-            this.CancelButton.Text = "Cancel";
-            this.CancelButton.UseVisualStyleBackColor = true;
-            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
-            // 
             // OKButton
             // 
-            this.OKButton.Location = new System.Drawing.Point(462, 3);
+            this.OKButton.Location = new System.Drawing.Point(543, 3);
             this.OKButton.Name = "OKButton";
             this.OKButton.Size = new System.Drawing.Size(75, 40);
             this.OKButton.TabIndex = 1;
@@ -482,7 +470,6 @@
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.Controls.Add(this.StartCodeCancelButton);
             this.flowLayoutPanel2.Controls.Add(this.StartCodeOKButton);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 283);
@@ -491,19 +478,9 @@
             this.flowLayoutPanel2.Size = new System.Drawing.Size(621, 40);
             this.flowLayoutPanel2.TabIndex = 2;
             // 
-            // StartCodeCancelButton
-            // 
-            this.StartCodeCancelButton.Location = new System.Drawing.Point(543, 3);
-            this.StartCodeCancelButton.Name = "StartCodeCancelButton";
-            this.StartCodeCancelButton.Size = new System.Drawing.Size(75, 35);
-            this.StartCodeCancelButton.TabIndex = 0;
-            this.StartCodeCancelButton.Text = "Cancel";
-            this.StartCodeCancelButton.UseVisualStyleBackColor = true;
-            this.StartCodeCancelButton.Click += new System.EventHandler(this.StartCodeCancelButton_Click);
-            // 
             // StartCodeOKButton
             // 
-            this.StartCodeOKButton.Location = new System.Drawing.Point(462, 3);
+            this.StartCodeOKButton.Location = new System.Drawing.Point(543, 3);
             this.StartCodeOKButton.Name = "StartCodeOKButton";
             this.StartCodeOKButton.Size = new System.Drawing.Size(75, 35);
             this.StartCodeOKButton.TabIndex = 1;
@@ -541,7 +518,6 @@
             // 
             // flowLayoutPanel3
             // 
-            this.flowLayoutPanel3.Controls.Add(this.EndCodeCancelButton);
             this.flowLayoutPanel3.Controls.Add(this.EndCodeOKButton);
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 283);
@@ -550,19 +526,9 @@
             this.flowLayoutPanel3.Size = new System.Drawing.Size(621, 40);
             this.flowLayoutPanel3.TabIndex = 0;
             // 
-            // EndCodeCancelButton
-            // 
-            this.EndCodeCancelButton.Location = new System.Drawing.Point(543, 3);
-            this.EndCodeCancelButton.Name = "EndCodeCancelButton";
-            this.EndCodeCancelButton.Size = new System.Drawing.Size(75, 35);
-            this.EndCodeCancelButton.TabIndex = 0;
-            this.EndCodeCancelButton.Text = "Cancel";
-            this.EndCodeCancelButton.UseVisualStyleBackColor = true;
-            this.EndCodeCancelButton.Click += new System.EventHandler(this.EndCodeCancelButton_Click);
-            // 
             // EndCodeOKButton
             // 
-            this.EndCodeOKButton.Location = new System.Drawing.Point(462, 3);
+            this.EndCodeOKButton.Location = new System.Drawing.Point(543, 3);
             this.EndCodeOKButton.Name = "EndCodeOKButton";
             this.EndCodeOKButton.Size = new System.Drawing.Size(75, 35);
             this.EndCodeOKButton.TabIndex = 1;
@@ -637,7 +603,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox PrintSpeedTextBox;
-        private System.Windows.Forms.TextBox LineWidthTextBox;
         private System.Windows.Forms.TextBox ZLiftTextBox;
         private System.Windows.Forms.TextBox PrimeExtrusionTextBox;
         private System.Windows.Forms.TextBox PrimeExtrusion2TextBox;
@@ -650,19 +615,17 @@
         private System.Windows.Forms.TextBox DotSpeedTextBox;
         private System.Windows.Forms.TextBox TravelSpeedTextBox;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button OKButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox StartCodeTextBox;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        private System.Windows.Forms.Button StartCodeCancelButton;
         private System.Windows.Forms.Button StartCodeOKButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
-        private System.Windows.Forms.Button EndCodeCancelButton;
         private System.Windows.Forms.Button EndCodeOKButton;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox EndCodeTextBox;
+        private System.Windows.Forms.ComboBox LineWidthComboBox;
     }
 }

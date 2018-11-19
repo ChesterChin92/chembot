@@ -16,9 +16,9 @@ namespace ChemBotOmega
 {
     public partial class ChemBotForm : Form
     {
+        string comport;
         SerialPort port;
         BindingList<State> bs = new BindingList<State>();
-
         double CoordX { get; set; }
         double CoordY { get; set; }
         double CoordZ { get; set; }
@@ -50,13 +50,9 @@ namespace ChemBotOmega
             
         }
 
-        public ChemBotForm(SerialPort port)
+        public ChemBotForm(string comport)
         {
             InitializeComponent();
-            this.port = port;
-            port.DataReceived += new SerialDataReceivedEventHandler(DataReturnFromMachine);
-            this.port.Open();
-
             LineWidth = Convert.ToDouble(ConfigurationManager.AppSettings["LineWidth"]);
             Multiplier = Convert.ToDouble(ConfigurationManager.AppSettings["Multiplier"]);
             PrintSpeed = Convert.ToDouble(ConfigurationManager.AppSettings["PrintSpeed"]);
@@ -73,7 +69,27 @@ namespace ChemBotOmega
             RetractSpeed = Convert.ToDouble(ConfigurationManager.AppSettings["RetractSpeed"]);
 
             StartCode = ConfigurationManager.AppSettings["StartCode"];
-            EndCode = ConfigurationManager.AppSettings["EndCode"];
+            EndCode = Regex.Replace(ConfigurationManager.AppSettings["EndCode"], "@", Environment.NewLine);
+
+            try
+            {
+                this.comport = comport;
+                port = new SerialPort(comport, 250000, Parity.None, 8, StopBits.One)
+                {
+                    Handshake = Handshake.None
+                };
+                this.port.DataReceived += new SerialDataReceivedEventHandler(DataReturnFromMachine);
+                this.port.Open();
+            }
+            catch (Exception ex)
+            {
+                if (port != null)
+                {
+                    port.Dispose();
+                }
+
+                MessageBox.Show("Error Message: " + Environment.NewLine + ex.Message);
+            }
         }
 
         private void ChemBotForm_Load(object sender, EventArgs e)
@@ -98,6 +114,7 @@ namespace ChemBotOmega
             State state = new State
             {
                 StartPoint = Tuple.Create(0.00, 0.00),
+                ZPoint = Tuple.Create(10.00, Double.NaN)
             };
 
             bs.Add(state);
@@ -120,7 +137,16 @@ namespace ChemBotOmega
 
         private void OutputToUser(string text)
         {
-            OutPutTextBox.AppendText(text + Environment.NewLine);
+            if (this.OutPutTextBox.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(OutputToUser);
+                this.Invoke(d, new object[] { text });
+            }
+            else
+            {
+                OutPutTextBox.AppendText(text + Environment.NewLine);
+            }
+            
 
             Regex Location = new Regex(@"X:\d+\.\d+ Y:\d+\.\d+ Z:\d+\.\d+ E:\d+\.\d+");
             Match match = Location.Match(text);
@@ -186,16 +212,19 @@ namespace ChemBotOmega
                 case 1:
                         CoordX = CoordX + scale;
                         SendGCode("G01 " + "X" + CoordX + " F" + TravelSpeed);
+                    SendGCode("M114");
                     break;
 
                 case 2:
                         CoordY = CoordY + scale;
-                        SendGCode("G01 " + "Y" + CoordY + " F" + TravelSpeed);                    
+                        SendGCode("G01 " + "Y" + CoordY + " F" + TravelSpeed);
+                    SendGCode("M114");
                     break;
 
                 case 3:
                         CoordZ = CoordZ + scale;
-                        SendGCode("G01 " + "Z" + CoordZ + " F" + TravelSpeed);                    
+                        SendGCode("G01 " + "Z" + CoordZ + " F" + TravelSpeed);
+                    SendGCode("M114");
                     break;
             }
         }
@@ -290,6 +319,7 @@ namespace ChemBotOmega
             if (double.TryParse(XPositionTextBox.Text, out x))
             {
                 SendGCode("G01 X" + x);
+                SendGCode("M114");
             }
             else
             {
@@ -303,6 +333,7 @@ namespace ChemBotOmega
             if (double.TryParse(YPositionTextBox.Text, out y))
             {
                 SendGCode("G01 Y" + y);
+                SendGCode("M114");
             }
             else
             {
@@ -316,6 +347,7 @@ namespace ChemBotOmega
             if (double.TryParse(ZPositionTextBox.Text, out z))
             {
                 SendGCode("G01 Z" + z);
+                SendGCode("M114");
             }
             else
             {
@@ -348,16 +380,28 @@ namespace ChemBotOmega
             }
             gcode = gcode + "G01 Z" + ZHeight + " F" + TravelSpeed + Environment.NewLine;
 
-            if (bs.Last().ZPoint.Item1 != bs.Last().ZPoint.Item2)
+            if (bs.Last().ZPoint.Item1 != bs.Last().ZPoint.Item2 && bs.Count() != 1)
             {
                 double variation = bs.Last().ZPoint.Item2 - bs.Last().ZPoint.Item1;
                 gcode = gcode + "G91" + Environment.NewLine;
                 gcode = gcode + "G01 Z" + variation + " F" + TravelSpeed + Environment.NewLine;
             }
+
             gcode = gcode + "G90" + Environment.NewLine;
             gcode = gcode + "G01 X" + bs.Last().EndPoint.Item1 + " Y" + bs.Last().EndPoint.Item2 + " F" + TravelSpeed + Environment.NewLine;
             gcode = gcode + "G91" + Environment.NewLine;
-            gcode = gcode + "G01 Z-" + ZHeight + " F" + TravelSpeed + Environment.NewLine;
+
+            if (bs.Last().ZPoint.Item1 != bs.Last().ZPoint.Item2 && bs.Count() == 1)
+            {
+                double variation = Math.Abs(bs.Last().ZPoint.Item2 - bs.Last().ZPoint.Item1);
+                gcode = gcode + "G91" + Environment.NewLine;
+                gcode = gcode + "G01 Z-" + (variation + ZHeight) + " F" + TravelSpeed + Environment.NewLine;
+            }
+            else
+            {
+                gcode = gcode + "G01 Z-" + ZHeight + " F" + TravelSpeed + Environment.NewLine;
+            }
+            
             gcode = gcode + "G01 E" + PrimeExtrusion + " F" + PrimeSpeed + Environment.NewLine;
 
             if (bs.Count() == 1)
@@ -381,6 +425,16 @@ namespace ChemBotOmega
             bs.Add(state);
         }
 
+        private void ConcatNewPointDot()
+        {
+            State state = new State
+            {
+                StartPoint = bs.Last().StartPoint,
+                ZPoint = Tuple.Create(CoordZ, Double.NaN)
+            };
+            bs.Add(state);
+        }
+
         private void DotButton_Click(object sender, EventArgs e)
         {
             if (!Double.IsNaN(bs.Last().EndPoint.Item1))
@@ -395,7 +449,8 @@ namespace ChemBotOmega
                 gcode = gcode + "G01 E" + DotSize + " F" + DotSpeed + Environment.NewLine;
                 bs.Last().Operation = "DOT";
                 bs.Last().GCode = gcode;
-                ConcatNewPoint();
+                bs.Last().EndPoint = Tuple.Create(-1.00, -1.00);
+                ConcatNewPointDot();
                 StateDataGridView.Refresh();
             }
         }
@@ -411,11 +466,31 @@ namespace ChemBotOmega
 
             string gcode = "";
 
-            gcode = gcode + "G90" + Environment.NewLine;
-            gcode = gcode + "G01 X" + bs.Last().StartPoint.Item1 + " Y" + bs.Last().StartPoint.Item2 + Environment.NewLine;
-            gcode = gcode + "G91" + Environment.NewLine;
-            gcode = gcode + "G01 X" + distX + " Y" + distY + " E" + (((distX == 0.00) ? Math.Abs(distY) : Math.Abs(distX)) / Multiplier) + " F" + PrintSpeed;
+            if (distX == 0 && distY > 0)
+            {
+                gcode = gcode + "G90" + Environment.NewLine;
+                gcode = gcode + "G01 X" + bs.Last().StartPoint.Item1 + " Y" + bs.Last().StartPoint.Item2 + Environment.NewLine;
+                gcode = gcode + "G91" + Environment.NewLine;
+                gcode = gcode + "G01 X" + distX + " Y" + distY + " E" + (Math.Abs(distY) / Multiplier) + " F" + PrintSpeed;
+            }
+            else if(distX > 0 && distY == 0)
+            {
+                gcode = gcode + "G90" + Environment.NewLine;
+                gcode = gcode + "G01 X" + bs.Last().StartPoint.Item1 + " Y" + bs.Last().StartPoint.Item2 + Environment.NewLine;
+                gcode = gcode + "G91" + Environment.NewLine;
+                gcode = gcode + "G01 X" + distX + " Y" + distY + " E" + (Math.Abs(distX) / Multiplier) + " F" + PrintSpeed;
+            }
+            else if(distX != 0 && distY != 0)
+            {
+                gcode = gcode + "G90" + Environment.NewLine;
+                gcode = gcode + "G01 X" + bs.Last().StartPoint.Item1 + " Y" + bs.Last().StartPoint.Item2 + Environment.NewLine;
+                gcode = gcode + "G91" + Environment.NewLine;
 
+                double diagonal = Math.Sqrt(Math.Abs(distX) * Math.Abs(distX) + Math.Abs(distY) * Math.Abs(distY));
+                MessageBox.Show((diagonal / Multiplier).ToString());
+                gcode = gcode + "G01 X" + distX + " Y" + distY + " E" + (diagonal / Multiplier) + " F" + PrintSpeed;
+            }
+            
             bs.Last().GCode = gcode;
             ConcatNewPoint();
             StateDataGridView.Refresh();
@@ -527,11 +602,12 @@ namespace ChemBotOmega
                     }
 
                 }
+                bs.Last().Operation = "COIL";
+                bs.Last().GCode = gcode;
+                ConcatNewPoint();
+                StateDataGridView.Refresh();
             }
-            bs.Last().Operation = "COIL";
-            bs.Last().GCode = gcode;
-            ConcatNewPoint();
-            StateDataGridView.Refresh();
+            
         }
 
         private void ZigZagButton_Click(object sender, EventArgs e)
@@ -626,7 +702,7 @@ namespace ChemBotOmega
                 radius -= LineWidth;
             }
 
-            LineWidthList.Remove(0);
+            //LineWidthList.Remove(0);
 
             if (radius > 0)
             {
@@ -637,23 +713,23 @@ namespace ChemBotOmega
             radius = (bs.Last().EndPoint.Item1 - bs.Last().StartPoint.Item1) / 2;
 
             gcode = gcode + "G90" + Environment.NewLine;
-            gcode = gcode + "G01 X" + (bs.Last().StartPoint.Item1 + (LineWidthList.First() / 2)) + " Y" + bs.Last().StartPoint.Item2 + " F" + TravelSpeed + Environment.NewLine;
+            gcode = gcode + "G01 X" + bs.Last().StartPoint.Item1 + " Y" + bs.Last().StartPoint.Item2 + " F" + TravelSpeed + Environment.NewLine;
             gcode = gcode + "G91" + Environment.NewLine;
 
-            foreach (double x in LineWidthList)
+            for (int x = 0; x < LineWidthList.Count(); x++)
             {
-                gcode = gcode + "G01 X" + (x) + " F" + TravelSpeed + Environment.NewLine;
-
-                if (x == LineWidth)
+                if (LineWidthList[x] == LineWidth)
                 {
-                    gcode = gcode + "G02 I" + (radius - x / 2) + " E" + (Math.Round((2 * Math.PI * radius), 4) / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                    gcode = gcode + "G02 I" + (radius) + " E" + (Math.Round((2 * Math.PI * radius), 4) / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                    gcode = gcode + "G01 X" + (LineWidthList[x]) + " F" + TravelSpeed + Environment.NewLine;
                 }
                 else
                 {
-                    gcode = gcode + "G01 E" + (radius - x / 2) + " E" + (Math.Round((2 * Math.PI * radius), 4) / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                    gcode = gcode + "G01 E" + (Math.Round((2 * Math.PI * radius), 4) / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
                 }
-                radius -= x;
+                radius -= LineWidthList[x];
             }
+
             bs.Last().Operation = "CIRCLE";
             bs.Last().GCode = gcode;
             ConcatNewPoint();
@@ -674,7 +750,7 @@ namespace ChemBotOmega
             gcode = gcode + "G91" + Environment.NewLine;
 
             gcode = gcode + "G02 X" + (bs.Last().EndPoint.Item1 - bs.Last().StartPoint.Item1) + " Y" + (bs.Last().EndPoint.Item2 - bs.Last().StartPoint.Item2);
-            gcode = gcode + " I" + OffsetX + " J" + OffsetY + " E" + (Math.Round((Math.PI * OffsetX), 4) / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+            gcode = gcode + " I" + OffsetX + " J" + OffsetY + " E" + (Math.Round((Math.PI * Math.Abs(OffsetX)), 4) / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
 
             bs.Last().Operation = "ARC";
             bs.Last().GCode = gcode;
@@ -695,7 +771,7 @@ namespace ChemBotOmega
             gcode = gcode + "G91" + Environment.NewLine;
 
             gcode = gcode + "G03 X" + (bs.Last().EndPoint.Item1 - bs.Last().StartPoint.Item1) + " Y" + (bs.Last().EndPoint.Item2 - bs.Last().StartPoint.Item2);
-            gcode = gcode + " I" + OffsetX + " J" + OffsetY + " E" + (Math.Round((Math.PI * OffsetX), 4) / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+            gcode = gcode + " I" + OffsetX + " J" + OffsetY + " E" + (Math.Round((Math.PI * Math.Abs(OffsetX)), 4) / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
 
             bs.Last().Operation = "ARC";
             bs.Last().GCode = gcode;
@@ -741,14 +817,25 @@ namespace ChemBotOmega
 
         private void DisconnectButton_Click(object sender, EventArgs e)
         {
-            if (port.IsOpen)
+            port.Dispose();
+            try
             {
-                port.Close();
+                port = new SerialPort(comport, 250000, Parity.None, 8, StopBits.One)
+                {
+                    Handshake = Handshake.None
+                };
+                this.port.DataReceived += new SerialDataReceivedEventHandler(DataReturnFromMachine);
+                this.port.Open();
             }
-            
-            port = null;
-            new StartScreen().Show();
-            Close();
+            catch (Exception ex)
+            {
+                if (port != null)
+                {
+                    port.Dispose();
+                }
+
+                MessageBox.Show("Error Message: " + Environment.NewLine + ex.Message);
+            }
         }
 
         private void PreheatButton_Click(object sender, EventArgs e)
@@ -795,16 +882,58 @@ namespace ChemBotOmega
                 DotSize = fm.GetDotSize();
                 StartCode = fm.GetStartCode();
                 EndCode = fm.GetEndCode();
+
+                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                configFile.AppSettings.Settings["StartCode"].Value = StartCode;
+
+                configFile.AppSettings.Settings["Multiplier"].Value = Multiplier.ToString();
+                configFile.AppSettings.Settings["PrintSpeed"].Value = PrintSpeed.ToString();
+                configFile.AppSettings.Settings["LineWidth"].Value = LineWidth.ToString();
+                configFile.AppSettings.Settings["ZHeight"].Value = ZHeight.ToString();
+                configFile.AppSettings.Settings["PrimeExtrusion"].Value = PrimeExtrusion.ToString();
+                configFile.AppSettings.Settings["PrimeExtrusion2"].Value = PrimeExtrusion2.ToString();
+                configFile.AppSettings.Settings["PrimeSpeed"].Value = PrimeSpeed.ToString();
+                configFile.AppSettings.Settings["PrimeSpeed2"].Value = PrimeSpeed2.ToString();
+                configFile.AppSettings.Settings["Retract"].Value = Retract.ToString();
+                configFile.AppSettings.Settings["RetractSpeed"].Value = RetractSpeed.ToString();
+                configFile.AppSettings.Settings["TravelSpeed"].Value = TravelSpeed.ToString();
+                configFile.AppSettings.Settings["DotSpeed"].Value = DotSpeed.ToString();
+                configFile.AppSettings.Settings["DotSize"].Value = DotSize.ToString();
+
+                var endcode = Regex.Replace(EndCode, Environment.NewLine, "@");
+                configFile.AppSettings.Settings["EndCode"].Value = endcode;
+                configFile.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection("appSettings");
             }
         }
 
         private void StateDataGridView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
-        {
+        {           
+            if (e.Row.Index < bs.Count() - 1)
+            {
+                int counter = bs.Count() - 1 - e.Row.Index;
+                for (int x = 0; x < counter; x++)
+                {
+                    StateDataGridView.Rows.Remove(StateDataGridView.Rows[bs.Count()-1]);
+                }
+            }
+
             if (StateDataGridView.RowCount == 1)
             {
                 State state = new State
                 {
-                    StartPoint = Tuple.Create(0.00, 0.00)
+                    StartPoint = Tuple.Create(0.00, 0.00),
+                    ZPoint = Tuple.Create(10.00, Double.NaN)
+                };
+                bs.Add(state);
+                StateDataGridView.Refresh();
+            }
+            else if (StateDataGridView.RowCount > 1)
+            {
+                State state = new State
+                {
+                    StartPoint = bs.Last().StartPoint,
+                    ZPoint = Tuple.Create(bs.Last().ZPoint.Item2, Double.NaN)
                 };
                 bs.Add(state);
                 StateDataGridView.Refresh();

@@ -892,6 +892,10 @@
             this.StateDataGridView.TabIndex = 0;
             this.StateDataGridView.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.StateDataGridView_UserDeletingRow);
             // 
+            // ExportSaveFileDialog
+            // 
+            this.ExportSaveFileDialog.DefaultExt = "gcode";
+            // 
             // ChemBotForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

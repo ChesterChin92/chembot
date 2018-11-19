@@ -31,7 +31,7 @@ namespace ChemBotOmega
 
         public Setting()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
         public Setting(double mul,
@@ -66,6 +66,11 @@ namespace ChemBotOmega
             dotsize = dtsz;
             this.startcode = startcode;
             this.endcode = endcode;
+
+            LineWidthComboBox.Items.Add("2");
+            LineWidthComboBox.Items.Add("3");
+
+            LineWidthComboBox.SelectedText = lw.ToString();
         }
 
         public double GetMultiplier()
@@ -145,7 +150,7 @@ namespace ChemBotOmega
 
         private void OKButton_Click(object sender, EventArgs e)
         {
-            double m, s, zh, pe, pe2, ps, ps2, rt, rts, ts, dtsz, dtsp;
+            double s, zh, pe, pe2, ps, ps2, rt, rts, ts, dtsz, dtsp;
             int lw;
             Boolean isError = false;
 
@@ -159,9 +164,20 @@ namespace ChemBotOmega
                 isError = true;
             }
 
-            if (Int32.TryParse(LineWidthTextBox.Text, out lw))
+            if (Int32.TryParse(LineWidthComboBox.Text, out lw))
             {
                 linewidth = lw;
+
+                switch (lw)
+                {
+                    case 2:
+                        multiplier = 200.00;
+                        break;
+
+                    case 3:
+                        multiplier = 150.00;
+                        break;
+                }
             }
             else
             {
@@ -284,7 +300,7 @@ namespace ChemBotOmega
         private void Setting_Load_1(object sender, EventArgs e)
         {
             PrintSpeedTextBox.Text = speed.ToString();
-            LineWidthTextBox.Text = linewidth.ToString();
+            LineWidthComboBox.Text = linewidth.ToString();
             ZLiftTextBox.Text = zheight.ToString();
             PrimeExtrusionTextBox.Text = primeextrusion.ToString();
             PrimeExtrusion2TextBox.Text = primeextrusion2.ToString();
@@ -296,7 +312,8 @@ namespace ChemBotOmega
             DotSizeTextBox.Text = dotsize.ToString();
             DotSpeedTextBox.Text = dotspeed.ToString();
 
-
+            StartCodeTextBox.Text = startcode;
+            EndCodeTextBox.Text = endcode;
         }
 
         private void StartCodeOKButton_Click(object sender, EventArgs e)
@@ -312,7 +329,7 @@ namespace ChemBotOmega
 
         private void EndCodeOKButton_Click(object sender, EventArgs e)
         {
-            this.endcode = StartCodeTextBox.Text;
+            this.endcode = EndCodeTextBox.Text;
             Close();
         }
 

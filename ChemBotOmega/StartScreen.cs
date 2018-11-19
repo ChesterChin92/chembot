@@ -14,7 +14,6 @@ namespace ChemBotOmega
     public partial class StartScreen : Form
     {
         string[] ComPorts;
-        SerialPort port;
 
         public StartScreen()
         {
@@ -29,6 +28,8 @@ namespace ChemBotOmega
 
         private void GetComPort()
         {
+            ComPortComboBox.Items.Clear();
+
             ComPorts = SerialPort.GetPortNames();
 
             foreach (string cp in ComPorts)
@@ -44,36 +45,15 @@ namespace ChemBotOmega
 
         private void ConnectButton_Click(object sender, EventArgs e)
         {
-            if (ComPortComboBox.Text == null)
+            if (ComPortComboBox.Text == "")
             {
                 MessageBox.Show("Please select a COM PORT.");
             }
             else
             {
-                try
-                {
-                    port = new SerialPort(ComPortComboBox.Text, 250000, Parity.None, 8, StopBits.One)
-                    {
-                        Handshake = Handshake.None
-                    };
-                    new ChemBotForm(port).Show();
-                    Close();
-                }
-                catch (Exception ex)
-                {
-                    if (port != null)
-                    {
-                        port.Dispose();
-                    }
-
-                    MessageBox.Show("Error Message: " + Environment.NewLine + ex.Message);
-                }
-            }            
+                new ChemBotForm(ComPortComboBox.Text).Show();
+                Close();
+            }
         }
-
-        private void ComPortComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }        
     }
 }

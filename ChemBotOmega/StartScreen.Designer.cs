@@ -108,12 +108,12 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(108, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(277, 102);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Chem Bot Control";
+            this.label1.Text = "Chembot Control";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ComPortComboBox
@@ -125,7 +125,6 @@
             this.ComPortComboBox.Name = "ComPortComboBox";
             this.ComPortComboBox.Size = new System.Drawing.Size(277, 21);
             this.ComPortComboBox.TabIndex = 3;
-            this.ComPortComboBox.SelectedIndexChanged += new System.EventHandler(this.ComPortComboBox_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -136,7 +135,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(99, 28);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Com Port:";
+            this.label2.Text = "COM Port:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // StartScreen

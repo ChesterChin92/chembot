@@ -462,14 +462,14 @@ namespace ChemBotOmega
 
             string gcode = "";
 
-            if (distX == 0 && distY > 0)
+            if (distX == 0 && Math.Abs(distY) > 0)
             {
                 gcode = gcode + "G90" + Environment.NewLine;
                 gcode = gcode + "G01 X" + bs.Last().StartPoint.Item1 + " Y" + bs.Last().StartPoint.Item2 + Environment.NewLine;
                 gcode = gcode + "G91" + Environment.NewLine;
                 gcode = gcode + "G01 X" + distX + " Y" + distY + " E" + (Math.Abs(distY) / Multiplier) + " F" + PrintSpeed;
             }
-            else if(distX > 0 && distY == 0)
+            else if(Math.Abs(distX) > 0 && distY == 0)
             {
                 gcode = gcode + "G90" + Environment.NewLine;
                 gcode = gcode + "G01 X" + bs.Last().StartPoint.Item1 + " Y" + bs.Last().StartPoint.Item2 + Environment.NewLine;
@@ -925,6 +925,11 @@ namespace ChemBotOmega
         }
 
         private void openProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
         }

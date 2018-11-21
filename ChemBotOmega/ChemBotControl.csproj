@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B660B627-1E4D-4B10-B5A7-E3A24D6F066F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>ChemBotOmega</RootNamespace>
-    <AssemblyName>ChemBotOmega</AssemblyName>
+    <RootNamespace>ChemBot</RootNamespace>
+    <AssemblyName>ChemBot</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -98,6 +98,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Setting.resx">
       <DependentUpon>Setting.cs</DependentUpon>

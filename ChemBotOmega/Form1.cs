@@ -45,10 +45,23 @@ namespace ChemBotOmega
         public ChemBotForm()
         {
             InitializeComponent();
+            LineWidth = Convert.ToDouble(ConfigurationManager.AppSettings["LineWidth"]);
+            Multiplier = Convert.ToDouble(ConfigurationManager.AppSettings["Multiplier"]);
+            PrintSpeed = Convert.ToDouble(ConfigurationManager.AppSettings["PrintSpeed"]);
+            TravelSpeed = Convert.ToDouble(ConfigurationManager.AppSettings["TravelSpeed"]);
+            ZHeight = Convert.ToDouble(ConfigurationManager.AppSettings["ZHeight"]);
+            DotSize = Convert.ToDouble(ConfigurationManager.AppSettings["DotSize"]);
+            DotSpeed = Convert.ToDouble(ConfigurationManager.AppSettings["DotSpeed"]);
 
-            MessageBox.Show(Regex.Replace(ConfigurationManager.AppSettings["EndCode"].ToString(), "@", Environment.NewLine));
+            PrimeExtrusion = Convert.ToDouble(ConfigurationManager.AppSettings["PrimeExtrusion"]);
+            PrimeExtrusion2 = Convert.ToDouble(ConfigurationManager.AppSettings["PrimeExtrusion2"]);
+            PrimeSpeed = Convert.ToDouble(ConfigurationManager.AppSettings["PrimeSpeed"]);
+            PrimeSpeed2 = Convert.ToDouble(ConfigurationManager.AppSettings["PrimeSpeed2"]);
+            Retract = Convert.ToDouble(ConfigurationManager.AppSettings["Retract"]);
+            RetractSpeed = Convert.ToDouble(ConfigurationManager.AppSettings["RetractSpeed"]);
 
-            
+            StartCode = ConfigurationManager.AppSettings["StartCode"];
+            EndCode = Regex.Replace(ConfigurationManager.AppSettings["EndCode"], "@", Environment.NewLine);            
         }
 
         public ChemBotForm(string comport)
@@ -363,48 +376,68 @@ namespace ChemBotOmega
         {
             bs.Last().EndPoint = Tuple.Create(CoordX, CoordY);
             bs.Last().ZPoint = Tuple.Create(bs.Last().ZPoint.Item1, CoordZ);
-            bs.Last().Operation = "TRAVEL";
-            double distX = bs.Last().EndPoint.Item1 - bs.Last().StartPoint.Item1;
-            double distY = bs.Last().EndPoint.Item2 - bs.Last().StartPoint.Item2;
+
+            double Z_end = bs.Last().ZPoint.Item2;
+            double Z_start;
+
+            if (bs.Count() == 1)
+            {
+                Z_start = bs.Last().ZPoint.Item1 + ZHeight;
+            }
+            else
+            {
+                Z_start = bs.Last().ZPoint.Item1;
+            }
 
             string gcode = "";
-        
-            gcode = gcode + "G91" + Environment.NewLine;
+
             if (bs.Count() != 1)
             {
                 gcode = gcode + "G01 E" + Retract + " F" + RetractSpeed + Environment.NewLine;
             }
-            gcode = gcode + "G01 Z" + ZHeight + " F" + TravelSpeed + Environment.NewLine;
 
-            if (bs.Last().ZPoint.Item1 != bs.Last().ZPoint.Item2 && bs.Count() != 1)
+            if (Z_end > Z_start)
             {
-                double variation = bs.Last().ZPoint.Item2 - bs.Last().ZPoint.Item1;
                 gcode = gcode + "G91" + Environment.NewLine;
-                gcode = gcode + "G01 Z" + variation + " F" + TravelSpeed + Environment.NewLine;
+                if (bs.Count() == 1)
+                {
+                    gcode = gcode + "G01 Z" + (ZHeight + Z_end - Z_start) + " F" + TravelSpeed + Environment.NewLine;
+                }
+                else
+                {
+                    gcode = gcode + "G01 Z" + (Z_end - Z_start) + " F" + TravelSpeed + Environment.NewLine;
+                }
+                gcode = gcode + "G90" + Environment.NewLine;
+                gcode = gcode + "G01 X" + bs.Last().EndPoint.Item1 + " Y" + bs.Last().EndPoint.Item2 + " F" + TravelSpeed + Environment.NewLine;
             }
-
-            gcode = gcode + "G90" + Environment.NewLine;
-            gcode = gcode + "G01 X" + bs.Last().EndPoint.Item1 + " Y" + bs.Last().EndPoint.Item2 + " F" + TravelSpeed + Environment.NewLine;
-            gcode = gcode + "G91" + Environment.NewLine;
-
-            if (bs.Last().ZPoint.Item1 != bs.Last().ZPoint.Item2 && bs.Count() == 1)
+            else if (Z_end < Z_start)
             {
-                double variation = Math.Abs(bs.Last().ZPoint.Item2 - bs.Last().ZPoint.Item1);
                 gcode = gcode + "G91" + Environment.NewLine;
-                gcode = gcode + "G01 Z-" + (variation + ZHeight) + " F" + TravelSpeed + Environment.NewLine;
+                gcode = gcode + "G01 Z" + ZHeight + " F" + TravelSpeed + Environment.NewLine;
+                gcode = gcode + "G90" + Environment.NewLine;
+                gcode = gcode + "G01 X" + bs.Last().EndPoint.Item1 + " Y" + bs.Last().EndPoint.Item2 + " F" + TravelSpeed + Environment.NewLine;
+                gcode = gcode + "G91" + Environment.NewLine;
+                gcode = gcode + "G01 Z-" + (Z_start-Z_end) + " F" + TravelSpeed + Environment.NewLine;
             }
-            else
+            else if(Z_end == Z_start)
             {
+                gcode = gcode + "G91" + Environment.NewLine;
+                gcode = gcode + "G01 Z" + ZHeight + " F" + TravelSpeed + Environment.NewLine;
+                gcode = gcode + "G90" + Environment.NewLine;
+                gcode = gcode + "G01 X" + bs.Last().EndPoint.Item1 + " Y" + bs.Last().EndPoint.Item2 + " F" + TravelSpeed + Environment.NewLine;
+                gcode = gcode + "G91" + Environment.NewLine;
                 gcode = gcode + "G01 Z-" + ZHeight + " F" + TravelSpeed + Environment.NewLine;
             }
-            
+
             gcode = gcode + "G01 E" + PrimeExtrusion + " F" + PrimeSpeed + Environment.NewLine;
 
             if (bs.Count() == 1)
             {
                 gcode = gcode + "G01 E" + PrimeExtrusion2 + " F" + PrimeSpeed2 + Environment.NewLine;
+                gcode = gcode + "G04 P200" + Environment.NewLine;
             }
 
+            bs.Last().Operation = "TRAVEL";
             gcode = gcode + "G90" + Environment.NewLine;
             bs.Last().GCode = gcode;
             ConcatNewPoint();
@@ -467,14 +500,14 @@ namespace ChemBotOmega
                 gcode = gcode + "G90" + Environment.NewLine;
                 gcode = gcode + "G01 X" + bs.Last().StartPoint.Item1 + " Y" + bs.Last().StartPoint.Item2 + Environment.NewLine;
                 gcode = gcode + "G91" + Environment.NewLine;
-                gcode = gcode + "G01 X" + distX + " Y" + distY + " E" + (Math.Abs(distY) / Multiplier) + " F" + PrintSpeed;
+                gcode = gcode + "G01 X" + distX + " Y" + distY + " E" + (Math.Abs(distY) / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
             }
             else if(Math.Abs(distX) > 0 && distY == 0)
             {
                 gcode = gcode + "G90" + Environment.NewLine;
                 gcode = gcode + "G01 X" + bs.Last().StartPoint.Item1 + " Y" + bs.Last().StartPoint.Item2 + Environment.NewLine;
                 gcode = gcode + "G91" + Environment.NewLine;
-                gcode = gcode + "G01 X" + distX + " Y" + distY + " E" + (Math.Abs(distX) / Multiplier) + " F" + PrintSpeed;
+                gcode = gcode + "G01 X" + distX + " Y" + distY + " E" + (Math.Abs(distX) / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
             }
             else if(distX != 0 && distY != 0)
             {
@@ -483,7 +516,7 @@ namespace ChemBotOmega
                 gcode = gcode + "G91" + Environment.NewLine;
 
                 double diagonal = Math.Sqrt(Math.Abs(distX) * Math.Abs(distX) + Math.Abs(distY) * Math.Abs(distY));
-                gcode = gcode + "G01 X" + distX + " Y" + distY + " E" + (diagonal / Multiplier) + " F" + PrintSpeed;
+                gcode = gcode + "G01 X" + distX + " Y" + distY + " E" + (diagonal / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
             }
             
             bs.Last().GCode = gcode;
@@ -663,13 +696,13 @@ namespace ChemBotOmega
                     {
                         if (reverse)
                         {
-                            gcode = gcode + "G01 X-" + distX + " E" + (distX / Multiplier) + " F" + PrintSpeed;
+                            gcode = gcode + "G01 X-" + distX + " E" + (distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
                             MessageBox.Show(gcode);
                             reverse = false;
                         }
                         else
                         {
-                            gcode = gcode + "G01 X" + distX + " E" + (distX / Multiplier) + " F" + PrintSpeed;
+                            gcode = gcode + "G01 X" + distX + " E" + (distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
                             reverse = true;
                         }
                     }
@@ -788,13 +821,13 @@ namespace ChemBotOmega
                         {
                             if (StateDataGridView.Rows[rows].Cells[3].Value != null)
                             {
-                                sw.Write(";" + StateDataGridView.Rows[rows].Cells[3].Value.ToString() + Environment.NewLine);
+                                sw.Write(Environment.NewLine + ";" + StateDataGridView.Rows[rows].Cells[3].Value.ToString() + Environment.NewLine);
                                 sw.Write(StateDataGridView.Rows[rows].Cells[4].Value.ToString());
                             }
 
                         }
 
-                        sw.Write(Environment.NewLine + EndCode + Environment.NewLine);
+                        sw.Write(Environment.NewLine + EndCode);
 
                         //Close the file
                         sw.Close();

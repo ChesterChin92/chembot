@@ -794,7 +794,7 @@ namespace ChemBotOmega
 
                         }
 
-                        sw.Write(EndCode + Environment.NewLine);
+                        sw.Write(Environment.NewLine + EndCode + Environment.NewLine);
 
                         //Close the file
                         sw.Close();

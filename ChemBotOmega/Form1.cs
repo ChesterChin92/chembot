@@ -466,22 +466,18 @@ namespace ChemBotOmega
 
         private void DotButton_Click(object sender, EventArgs e)
         {
-            if (!Double.IsNaN(bs.Last().EndPoint.Item1))
-            {
-                MessageBox.Show("Invalid dot operation. Only start point is needed.");
-            }
-            else
-            {
-                string gcode = "G90" + Environment.NewLine;
-                gcode = gcode + "G01 X" + bs.Last().StartPoint.Item1 + " Y" + bs.Last().StartPoint.Item2 + Environment.NewLine;
-                gcode = gcode + "G91" + Environment.NewLine;
-                gcode = gcode + "G01 E" + DotSize + " F" + DotSpeed + Environment.NewLine;
-                bs.Last().Operation = "DOT";
-                bs.Last().GCode = gcode;
-                bs.Last().EndPoint = Tuple.Create(-1.00, -1.00);
-                ConcatNewPointDot();
-                StateDataGridView.Refresh();
-            }
+            bs.Last().EndPoint = bs.Last().StartPoint;
+            bs.Last().ZPoint = Tuple.Create(bs.Last().ZPoint.Item1, CoordZ);
+
+            string gcode = "G90" + Environment.NewLine;
+            gcode = gcode + "G01 X" + bs.Last().EndPoint.Item1 + " Y" + bs.Last().EndPoint.Item2 + Environment.NewLine;
+            gcode = gcode + "G91" + Environment.NewLine;
+            gcode = gcode + "G01 E" + DotSize + " F" + DotSpeed + Environment.NewLine;
+            bs.Last().Operation = "DOT";
+            bs.Last().GCode = gcode;
+            ConcatNewPoint();
+            StateDataGridView.Refresh();
+            
         }
 
         private void LineButton_Click(object sender, EventArgs e)

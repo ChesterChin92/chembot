@@ -14,7 +14,7 @@ namespace ChemBotOmega
     {
         double multiplier;
         double speed;
-        int linewidth;
+        double linewidth;
         double zheight;
         double primeextrusion;
         double primeextrusion2;
@@ -36,7 +36,7 @@ namespace ChemBotOmega
 
         public Setting(double mul,
             double speed,
-            int lw,
+            double lw,
             double zheight,
             double pex,
             double pex2,
@@ -67,6 +67,7 @@ namespace ChemBotOmega
             this.startcode = startcode;
             this.endcode = endcode;
 
+            //LineWidthComboBox.Items.Add("0.5");
             LineWidthComboBox.Items.Add("2");
             LineWidthComboBox.Items.Add("3");
 
@@ -150,8 +151,7 @@ namespace ChemBotOmega
 
         private void OKButton_Click(object sender, EventArgs e)
         {
-            double s, zh, pe, pe2, ps, ps2, rt, rts, ts, dtsz, dtsp;
-            int lw;
+            double s, zh, pe, pe2, ps, ps2, rt, rts, ts, dtsz, dtsp, lw, mul;
             Boolean isError = false;
 
             if (Double.TryParse(PrintSpeedTextBox.Text, out s))
@@ -164,20 +164,35 @@ namespace ChemBotOmega
                 isError = true;
             }
 
-            if (Int32.TryParse(LineWidthComboBox.Text, out lw))
+            if (Double.TryParse(MultiplierTextBox.Text, out mul))
+            {
+                multiplier = mul;
+            }
+            else
+            {
+                MessageBox.Show("Invalid MULTIPLIER value");
+                isError = true;
+            }
+
+            if (Double.TryParse(LineWidthComboBox.Text, out lw))
             {
                 linewidth = lw;
 
-                switch (lw)
-                {
-                    case 2:
-                        multiplier = 200.00;
-                        break;
+                //if (lw == 2)
+                //{
+                //    multiplier = 200.00;
+                //}
 
-                    case 3:
-                        multiplier = 150.00;
-                        break;
-                }
+                //if (lw == 3)
+                //{
+                //    multiplier = 150.00;
+                //}
+
+                //if (lw == 0.5)
+                //{
+                //    multiplier = 10000;
+                //}
+
             }
             else
             {
@@ -299,6 +314,8 @@ namespace ChemBotOmega
 
         private void Setting_Load_1(object sender, EventArgs e)
         {
+            toolTip1.SetToolTip(MultiplierHelperButton, "2mm - 200" + Environment.NewLine + "3mm - 150");
+
             PrintSpeedTextBox.Text = speed.ToString();
             LineWidthComboBox.Text = linewidth.ToString();
             ZLiftTextBox.Text = zheight.ToString();
@@ -311,6 +328,7 @@ namespace ChemBotOmega
             TravelSpeedTextBox.Text = travelspeed.ToString();
             DotSizeTextBox.Text = dotsize.ToString();
             DotSpeedTextBox.Text = dotspeed.ToString();
+            MultiplierTextBox.Text = multiplier.ToString();
 
             StartCodeTextBox.Text = startcode;
             EndCodeTextBox.Text = endcode;

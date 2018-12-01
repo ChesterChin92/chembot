@@ -137,6 +137,11 @@ namespace ChemBotOmega
             StateDataGridView.Columns[4].Visible = false;
         }
 
+        private string ExtrusionFormatter(double number)
+        {
+            return string.Format("{0:F5}", Math.Round(number, 5));
+        }
+
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
@@ -496,14 +501,14 @@ namespace ChemBotOmega
                 gcode = gcode + "G90" + Environment.NewLine;
                 gcode = gcode + "G01 X" + bs.Last().StartPoint.Item1 + " Y" + bs.Last().StartPoint.Item2 + Environment.NewLine;
                 gcode = gcode + "G91" + Environment.NewLine;
-                gcode = gcode + "G01 X" + distX + " Y" + distY + " E" + (Math.Abs(distY) / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                gcode = gcode + "G01 X" + distX + " Y" + distY + " E" + ExtrusionFormatter(Math.Abs(distY) / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
             }
             else if(Math.Abs(distX) > 0 && distY == 0)
             {
                 gcode = gcode + "G90" + Environment.NewLine;
                 gcode = gcode + "G01 X" + bs.Last().StartPoint.Item1 + " Y" + bs.Last().StartPoint.Item2 + Environment.NewLine;
                 gcode = gcode + "G91" + Environment.NewLine;
-                gcode = gcode + "G01 X" + distX + " Y" + distY + " E" + (Math.Abs(distX) / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                gcode = gcode + "G01 X" + distX + " Y" + distY + " E" + ExtrusionFormatter(Math.Abs(distX) / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
             }
             else if(distX != 0 && distY != 0)
             {
@@ -512,7 +517,7 @@ namespace ChemBotOmega
                 gcode = gcode + "G91" + Environment.NewLine;
 
                 double diagonal = Math.Sqrt(Math.Abs(distX) * Math.Abs(distX) + Math.Abs(distY) * Math.Abs(distY));
-                gcode = gcode + "G01 X" + distX + " Y" + distY + " E" + (diagonal / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                gcode = gcode + "G01 X" + distX + " Y" + distY + " E" + ExtrusionFormatter(diagonal / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
             }
             
             bs.Last().GCode = gcode;
@@ -527,110 +532,195 @@ namespace ChemBotOmega
 
             double distX = Math.Abs(bs.Last().EndPoint.Item1 - bs.Last().StartPoint.Item1) - LineWidth;
             double distY = Math.Abs(bs.Last().EndPoint.Item2 - bs.Last().StartPoint.Item2) - LineWidth;
-            string gcode = "";
-            gcode = gcode + "G90" + Environment.NewLine;
-            gcode = gcode + "G01 X" + bs.Last().StartPoint.Item1 + " Y" + bs.Last().StartPoint.Item2 + Environment.NewLine;
-            gcode = gcode + "G91" + Environment.NewLine;
-            Boolean loop = true;
 
-            if (distX < LineWidth && distY < LineWidth)
-            {
-                MessageBox.Show("Invalid input. PLease choose another point");
-            }
-            else if (distY < LineWidth)
-            {
-                gcode = gcode + "G01 X" + distX + " E" + (distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
-            }
-            else if (distX < LineWidth)
-            {
-                gcode = gcode + "G01 Y" + distY + " E" + (distY / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
-            }
-            else
-            {
-                gcode = gcode + "G01 X" + distX + " E" + (distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
-                gcode = gcode + "G01 Y" + distY + " E" + (distY / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
-                gcode = gcode + "G01 X-" + distX + " E" + (distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+            if (distX > LineWidth && distY > LineWidth)
+            {                
+
+                string gcode = "";
+
+                gcode = gcode + "G90" + Environment.NewLine;
+                gcode = gcode + "G01 X" + (bs.Last().StartPoint.Item1 + (LineWidth/2)) + " Y" + (bs.Last().StartPoint.Item2 + (LineWidth / 2)) + Environment.NewLine;
+                gcode = gcode + "G91" + Environment.NewLine;
+
+                gcode = gcode + "G01 X" + distX + " E" + ExtrusionFormatter(distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                gcode = gcode + "G01 Y" + distY + " E" + ExtrusionFormatter(distY / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                gcode = gcode + "G01 X-" + distX + " E" + ExtrusionFormatter(distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
                 distY -= LineWidth;
                 distX -= LineWidth;
-                gcode = gcode + "G01 Y-" + distY + " E" + (distY / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                gcode = gcode + "G01 Y-" + distY + " E" + ExtrusionFormatter(distY / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
                 distY -= LineWidth;
-            }
 
-            if (distY < LineWidth)
-            {
-                gcode = gcode + "G01 X" + distX + " E" + (distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
-            }
-            else
-            {
-                int counter = 1;
-                while (loop)
+                while(distX > LineWidth && distY > LineWidth)
                 {
-                    switch (counter)
-                    {
-                        case 1:
-                            if (distX < LineWidth)
-                            {
-                                counter = 4;
-                            }
-                            else
-                            {
-                                gcode = gcode + "G01 X" + distX + " E" + (distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
-                                distX -= LineWidth;
-                                counter = 2;
-                            }
-                            break;
-
-                        case 2:
-                            if (distY < LineWidth)
-                            {
-                                counter = 4;
-                            }
-                            else
-                            {
-                                gcode = gcode + "G01 Y" + distY + " E" + (distY / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
-                                distY -= LineWidth;
-                                counter = 3;
-                            }
-                            break;
-
-                        case 3:
-                            if (distX < LineWidth)
-                            {
-                                counter = 4;
-                            }
-                            else
-                            {
-                                gcode = gcode + "G01 X-" + distX + " E" + (distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
-                                distX -= LineWidth;
-                                counter = 0;
-                            }
-                            break;
-
-                        case 0:
-                            if (distY < LineWidth)
-                            {
-                                counter = 4;
-                            }
-                            else
-                            {
-                                gcode = gcode + "G01 Y-" + distY + " E" + (distY / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
-                                distY -= LineWidth;
-                                counter = 1;
-                            }
-                            break;
-
-                        case 4:
-                            loop = false;
-                            break;
-                    }
-
+                    gcode = gcode + "G01 X" + Math.Round(distX, 2) + " E" + ExtrusionFormatter(distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                    distX -= LineWidth;
+                    gcode = gcode + "G01 Y" + Math.Round(distY, 2) + " E" + ExtrusionFormatter(distY / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                    distY -= LineWidth;
+                    gcode = gcode + "G01 X-" + Math.Round(distX, 2) + " E" + ExtrusionFormatter(distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;                    
+                    gcode = gcode + "G01 Y-" + Math.Round(distY, 2) + " E" + ExtrusionFormatter(distY / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                    distY -= LineWidth;
+                    distX -= LineWidth;
                 }
+
+                if (distX > LineWidth && distY == LineWidth)
+                {
+                    gcode = gcode + "G01 X" + Math.Round(distX, 2) + " E" + ExtrusionFormatter(distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                    distX -= LineWidth;                    
+                    gcode = gcode + "G01 Y" + Math.Round(distY, 2) + " E" + ExtrusionFormatter(distY / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                    gcode = gcode + "G01 X-" + Math.Round(distX, 2) + " E" + ExtrusionFormatter(distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                }
+                else if (distX > LineWidth && distY < LineWidth)
+                {
+                    gcode = gcode + "G01 X" + Math.Round(distX, 2) + " E" + ExtrusionFormatter(distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                    distX -= LineWidth;
+                    if (distY > 0)
+                    {
+                        double y = Math.Round(distY/2, 2) + LineWidth / 2;
+                        gcode = gcode + "G01 Y" + y + " E" + ExtrusionFormatter(distY / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                        gcode = gcode + "G01 X-" + Math.Round(distX, 2) + " E" + ExtrusionFormatter(distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                    }                    
+                }
+                else if (distX == LineWidth && distY >= LineWidth)
+                {
+                    gcode = gcode + "G01 X" + Math.Round(distX, 2) + " E" + ExtrusionFormatter(distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                    gcode = gcode + "G01 Y" + Math.Round(distY, 2) + " E" + ExtrusionFormatter(distY / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                }
+                else if (distX == LineWidth && distY < LineWidth)
+                {
+                    gcode = gcode + "G01 X" + Math.Round(distX, 2) + " E" + ExtrusionFormatter(distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                    if (distY > 0)
+                    {
+                        double y = distY / 2 + LineWidth / 2;
+                        gcode = gcode + "G01 Y" + Math.Round(y, 2) + " E" + ExtrusionFormatter(distY / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                    }
+                }
+                else if (distX < LineWidth && distY >= LineWidth)
+                {
+                    double x = LineWidth / 2 + distX/2;
+                    gcode = gcode + "G01 X" + Math.Round(x, 2) + " E" + ExtrusionFormatter(distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                    gcode = gcode + "G01 Y" + Math.Round(distY, 2) + " E" + ExtrusionFormatter(distY / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                }
+                else if (distX < LineWidth && distY < LineWidth)
+                {
+                    if (distX > 0)
+                    {
+                        double x = LineWidth / 2 + distX / 2;
+                        gcode = gcode + "G01 X" + Math.Round(x, 2) + " E" + ExtrusionFormatter(distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                    }                    
+                }
+                               
                 bs.Last().Operation = "COIL";
                 bs.Last().GCode = gcode;
                 ConcatNewPoint();
                 StateDataGridView.Refresh();
             }
-            
+
+
+
+            //string gcode = "";
+            //gcode = gcode + "G90" + Environment.NewLine;
+            //gcode = gcode + "G01 X" + bs.Last().StartPoint.Item1 + " Y" + bs.Last().StartPoint.Item2 + Environment.NewLine;
+            //gcode = gcode + "G91" + Environment.NewLine;
+            //Boolean loop = true;
+
+            //if (distX < LineWidth && distY < LineWidth)
+            //{
+            //    MessageBox.Show("Invalid input. PLease choose another point");
+            //}
+            //else if (distY < LineWidth)
+            //{
+            //    gcode = gcode + "G01 X" + distX + " E" + (distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+            //}
+            //else if (distX < LineWidth)
+            //{
+            //    gcode = gcode + "G01 Y" + distY + " E" + (distY / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+            //}
+            //else
+            //{
+            //    gcode = gcode + "G01 X" + distX + " E" + (distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+            //    gcode = gcode + "G01 Y" + distY + " E" + (distY / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+            //    gcode = gcode + "G01 X-" + distX + " E" + (distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+            //    distY -= LineWidth;
+            //    distX -= LineWidth;
+            //    gcode = gcode + "G01 Y-" + distY + " E" + (distY / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+            //    distY -= LineWidth;
+            //}
+
+            //if (distY < LineWidth)
+            //{
+            //    gcode = gcode + "G01 X" + distX + " E" + (distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+            //}
+            //else
+            //{
+            //    int counter = 1;
+            //    while (loop)
+            //    {
+            //        switch (counter)
+            //        {
+            //            case 1:
+            //                if (distX < LineWidth)
+            //                {
+            //                    counter = 4;
+            //                }
+            //                else
+            //                {
+            //                    gcode = gcode + "G01 X" + distX + " E" + (distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+            //                    distX -= LineWidth;
+            //                    counter = 2;
+            //                }
+            //                break;
+
+            //            case 2:
+            //                if (distY < LineWidth)
+            //                {
+            //                    counter = 4;
+            //                }
+            //                else
+            //                {
+            //                    gcode = gcode + "G01 Y" + distY + " E" + (distY / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+            //                    distY -= LineWidth;
+            //                    counter = 3;
+            //                }
+            //                break;
+
+            //            case 3:
+            //                if (distX < LineWidth)
+            //                {
+            //                    counter = 4;
+            //                }
+            //                else
+            //                {
+            //                    gcode = gcode + "G01 X-" + distX + " E" + (distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+            //                    distX -= LineWidth;
+            //                    counter = 0;
+            //                }
+            //                break;
+
+            //            case 0:
+            //                if (distY < LineWidth)
+            //                {
+            //                    counter = 4;
+            //                }
+            //                else
+            //                {
+            //                    gcode = gcode + "G01 Y-" + distY + " E" + (distY / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+            //                    distY -= LineWidth;
+            //                    counter = 1;
+            //                }
+            //                break;
+
+            //            case 4:
+            //                loop = false;
+            //                break;
+            //        }
+
+            //    }
+            //    bs.Last().Operation = "COIL";
+            //    bs.Last().GCode = gcode;
+            //    ConcatNewPoint();
+            //    StateDataGridView.Refresh();
+            //}
+
         }
 
         private void ZigZagButton_Click(object sender, EventArgs e)
@@ -652,37 +742,37 @@ namespace ChemBotOmega
                 {
                     if (reverse)
                     {
-                        gcode = gcode + "G01 X-" + distX + " E" + (distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                        gcode = gcode + "G01 X-" + distX + " E" + ExtrusionFormatter(distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
                         reverse = false;
                     }
                     else
                     {
-                        gcode = gcode + "G01 X" + distX + " E" + (distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                        gcode = gcode + "G01 X" + distX + " E" + ExtrusionFormatter(distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
                         reverse = true;
                     }
                     if (distY - LineWidth == LineWidth)
                     {
                         distY -= LineWidth;
-                        gcode = gcode + "G01 Y" + LineWidth + " E" + (distY / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                        gcode = gcode + "G01 Y" + Math.Round(LineWidth, 2) + " E" + ExtrusionFormatter(LineWidth / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
                         if (reverse)
                         {
-                            gcode = gcode + "G01 X-" + distX + " E" + (distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                            gcode = gcode + "G01 X-" + distX + " E" + ExtrusionFormatter(distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
                             reverse = false;
                         }
                         else
                         {
-                            gcode = gcode + "G01 X" + distX + " E" + (distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                            gcode = gcode + "G01 X" + distX + " E" + ExtrusionFormatter(distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
                             reverse = true;
                         }
                     }
                     else if (distY - LineWidth < LineWidth)
                     {
                         distY -= LineWidth;
-                        gcode = gcode + "G01 Y" + ((LineWidth / 2) + distY / 2) + " E" + (distY / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                        gcode = gcode + "G01 Y" + Math.Round(((LineWidth / 2) + distY / 2), 2) + " E" + ExtrusionFormatter(LineWidth / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
                     }
                     else
                     {
-                        gcode = gcode + "G01 Y" + LineWidth + " E" + (distY / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                        gcode = gcode + "G01 Y" + Math.Round(LineWidth, 2) + " E" + ExtrusionFormatter(LineWidth / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
                         distY -= LineWidth;
                     }
                 }
@@ -692,13 +782,12 @@ namespace ChemBotOmega
                     {
                         if (reverse)
                         {
-                            gcode = gcode + "G01 X-" + distX + " E" + (distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
-                            MessageBox.Show(gcode);
+                            gcode = gcode + "G01 X-" + distX + " E" + ExtrusionFormatter(distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
                             reverse = false;
                         }
                         else
                         {
-                            gcode = gcode + "G01 X" + distX + " E" + (distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                            gcode = gcode + "G01 X" + distX + " E" + ExtrusionFormatter(distX / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
                             reverse = true;
                         }
                     }
@@ -743,12 +832,12 @@ namespace ChemBotOmega
             {
                 if (LineWidthList[x] == LineWidth)
                 {
-                    gcode = gcode + "G02 I" + (radius) + " E" + (Math.Round((2 * Math.PI * radius), 4) / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                    gcode = gcode + "G02 I" + (Math.Round(radius, 2)) + " E" + ExtrusionFormatter(2 * Math.PI * radius / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
                     gcode = gcode + "G01 X" + (LineWidthList[x]) + " F" + TravelSpeed + Environment.NewLine;
                 }
                 else
                 {
-                    gcode = gcode + "G01 E" + (Math.Round((2 * Math.PI * radius), 4) / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+                    gcode = gcode + "G01 E" + ExtrusionFormatter(2 * Math.PI * radius / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
                 }
                 radius -= LineWidthList[x];
             }
@@ -773,7 +862,7 @@ namespace ChemBotOmega
             gcode = gcode + "G91" + Environment.NewLine;
 
             gcode = gcode + "G02 X" + (bs.Last().EndPoint.Item1 - bs.Last().StartPoint.Item1) + " Y" + (bs.Last().EndPoint.Item2 - bs.Last().StartPoint.Item2);
-            gcode = gcode + " I" + OffsetX + " J" + OffsetY + " E" + (Math.Round((Math.PI * Math.Abs(OffsetX)), 4) / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+            gcode = gcode + " I" + OffsetX + " J" + OffsetY + " E" + ExtrusionFormatter(Math.PI * Math.Abs(OffsetX) / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
 
             bs.Last().Operation = "ARC";
             bs.Last().GCode = gcode;
@@ -794,7 +883,7 @@ namespace ChemBotOmega
             gcode = gcode + "G91" + Environment.NewLine;
 
             gcode = gcode + "G03 X" + (bs.Last().EndPoint.Item1 - bs.Last().StartPoint.Item1) + " Y" + (bs.Last().EndPoint.Item2 - bs.Last().StartPoint.Item2);
-            gcode = gcode + " I" + OffsetX + " J" + OffsetY + " E" + (Math.Round((Math.PI * Math.Abs(OffsetX)), 4) / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
+            gcode = gcode + " I" + OffsetX + " J" + OffsetY + " E" + ExtrusionFormatter(Math.PI * Math.Abs(OffsetX) / Multiplier) + " F" + PrintSpeed + Environment.NewLine;
 
             bs.Last().Operation = "ARC";
             bs.Last().GCode = gcode;
@@ -823,7 +912,7 @@ namespace ChemBotOmega
 
                         }
 
-                        sw.Write(Environment.NewLine + EndCode);
+                        sw.Write(Environment.NewLine + EndCode + Environment.NewLine + "M23 " + System.IO.Path.GetFileName(ExportSaveFileDialog.FileName) + Environment.NewLine);
 
                         //Close the file
                         sw.Close();
@@ -865,7 +954,7 @@ namespace ChemBotOmega
             using (Setting fm = new Setting(
                 Multiplier,
                 PrintSpeed,
-                Convert.ToInt32(LineWidth),
+                LineWidth,
                 ZHeight,
                 PrimeExtrusion,
                 PrimeExtrusion2,
@@ -882,7 +971,7 @@ namespace ChemBotOmega
                 fm.ShowDialog();
                 Multiplier = fm.GetMultiplier();
                 PrintSpeed = fm.GetSpeed();
-                LineWidth = Convert.ToDouble(fm.GetLineWidth());
+                LineWidth = fm.GetLineWidth();
                 ZHeight = fm.GetZHeight();
                 PrimeExtrusion = fm.GetPrimeExtrusion();
                 PrimeExtrusion2 = fm.GetPrimeExtrusion2();
@@ -895,6 +984,8 @@ namespace ChemBotOmega
                 DotSize = fm.GetDotSize();
                 StartCode = fm.GetStartCode();
                 EndCode = fm.GetEndCode();
+
+
 
                 var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                 configFile.AppSettings.Settings["StartCode"].Value = StartCode;
@@ -951,16 +1042,6 @@ namespace ChemBotOmega
                 bs.Add(state);
                 StateDataGridView.Refresh();
             }
-        }
-
-        private void openProjectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
         }
     }
 }

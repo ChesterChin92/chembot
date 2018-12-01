@@ -149,7 +149,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(1184, 31);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // fileToolStripMenuItem
             // 
@@ -164,7 +163,6 @@
             this.openProjectToolStripMenuItem.Name = "openProjectToolStripMenuItem";
             this.openProjectToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.openProjectToolStripMenuItem.Text = "Load GCode";
-            this.openProjectToolStripMenuItem.Click += new System.EventHandler(this.openProjectToolStripMenuItem_Click);
             // 
             // splitContainer2
             // 
@@ -881,7 +879,7 @@
             // 
             // ExportSaveFileDialog
             // 
-            this.ExportSaveFileDialog.DefaultExt = "gcode";
+            this.ExportSaveFileDialog.DefaultExt = "gco";
             // 
             // ChemBotForm
             // 

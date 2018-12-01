@@ -1,4 +1,3 @@
-C:\Users\MeatGrinder\Desktop\ChemBotOmega\ChemBotOmega\obj\Release\ChemBotControl.csprojAssemblyReference.cache
 C:\Users\MeatGrinder\Desktop\ChemBotOmega\ChemBotOmega\obj\Release\ChemBotOmega.ChemBotForm.resources
 C:\Users\MeatGrinder\Desktop\ChemBotOmega\ChemBotOmega\obj\Release\ChemBotOmega.Setting.resources
 C:\Users\MeatGrinder\Desktop\ChemBotOmega\ChemBotOmega\obj\Release\ChemBotOmega.StartScreen.resources

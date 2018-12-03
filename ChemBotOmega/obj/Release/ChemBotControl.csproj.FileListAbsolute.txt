@@ -9,3 +9,4 @@ C:\Users\MeatGrinder\Desktop\ChemBotOmega\ChemBotOmega\bin\Release\ChemBot.pdb
 C:\Users\MeatGrinder\Desktop\ChemBotOmega\ChemBotOmega\obj\Release\ChemBot.Properties.Resources.resources
 C:\Users\MeatGrinder\Desktop\ChemBotOmega\ChemBotOmega\obj\Release\ChemBot.exe
 C:\Users\MeatGrinder\Desktop\ChemBotOmega\ChemBotOmega\obj\Release\ChemBot.pdb
+C:\Users\MeatGrinder\Desktop\ChemBotOmega\ChemBotOmega\obj\Release\ChemBotControl.csprojAssemblyReference.cache

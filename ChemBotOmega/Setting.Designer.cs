@@ -100,7 +100,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(641, 333);
+            this.tabControl1.Size = new System.Drawing.Size(641, 375);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -109,7 +109,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(633, 307);
+            this.tabPage1.Size = new System.Drawing.Size(633, 349);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Printing Variable";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -126,7 +126,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 85F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(627, 301);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(627, 343);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -176,7 +176,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(621, 249);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(621, 285);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // label1
@@ -185,7 +185,7 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 24);
+            this.label1.Size = new System.Drawing.Size(87, 28);
             this.label1.TabIndex = 0;
             this.label1.Text = "Print Speed:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -194,9 +194,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(3, 24);
+            this.label2.Location = new System.Drawing.Point(3, 28);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 24);
+            this.label2.Size = new System.Drawing.Size(87, 28);
             this.label2.TabIndex = 1;
             this.label2.Text = "Line Gap:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -205,9 +205,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(3, 48);
+            this.label3.Location = new System.Drawing.Point(3, 56);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(87, 24);
+            this.label3.Size = new System.Drawing.Size(87, 28);
             this.label3.TabIndex = 2;
             this.label3.Text = "Z Lift:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -216,9 +216,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(3, 72);
+            this.label4.Location = new System.Drawing.Point(3, 84);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 24);
+            this.label4.Size = new System.Drawing.Size(87, 28);
             this.label4.TabIndex = 3;
             this.label4.Text = "Prime Extrusion:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -227,9 +227,9 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(3, 96);
+            this.label5.Location = new System.Drawing.Point(3, 112);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(87, 24);
+            this.label5.Size = new System.Drawing.Size(87, 28);
             this.label5.TabIndex = 4;
             this.label5.Text = "Prime Extrusion (first layer):";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -238,9 +238,9 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Location = new System.Drawing.Point(3, 120);
+            this.label6.Location = new System.Drawing.Point(3, 140);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(87, 24);
+            this.label6.Size = new System.Drawing.Size(87, 28);
             this.label6.TabIndex = 5;
             this.label6.Text = "Prime Speed:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -249,9 +249,9 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Location = new System.Drawing.Point(3, 144);
+            this.label7.Location = new System.Drawing.Point(3, 168);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(87, 24);
+            this.label7.Size = new System.Drawing.Size(87, 28);
             this.label7.TabIndex = 6;
             this.label7.Text = "Prime Speed (first layer):";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -260,9 +260,9 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.Location = new System.Drawing.Point(3, 168);
+            this.label8.Location = new System.Drawing.Point(3, 196);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(87, 24);
+            this.label8.Size = new System.Drawing.Size(87, 28);
             this.label8.TabIndex = 7;
             this.label8.Text = "Retract:";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -271,9 +271,9 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Location = new System.Drawing.Point(3, 192);
+            this.label9.Location = new System.Drawing.Point(3, 224);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(87, 24);
+            this.label9.Size = new System.Drawing.Size(87, 28);
             this.label9.TabIndex = 8;
             this.label9.Text = "Retract Speed:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -284,7 +284,7 @@
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label11.Location = new System.Drawing.Point(313, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(87, 24);
+            this.label11.Size = new System.Drawing.Size(87, 28);
             this.label11.TabIndex = 10;
             this.label11.Text = "Dot Size:";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -293,9 +293,9 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label12.Location = new System.Drawing.Point(313, 24);
+            this.label12.Location = new System.Drawing.Point(313, 28);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(87, 24);
+            this.label12.Size = new System.Drawing.Size(87, 28);
             this.label12.TabIndex = 11;
             this.label12.Text = "Dot Speed:";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -311,7 +311,7 @@
             // ZLiftTextBox
             // 
             this.ZLiftTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ZLiftTextBox.Location = new System.Drawing.Point(96, 51);
+            this.ZLiftTextBox.Location = new System.Drawing.Point(96, 59);
             this.ZLiftTextBox.Name = "ZLiftTextBox";
             this.ZLiftTextBox.Size = new System.Drawing.Size(211, 20);
             this.ZLiftTextBox.TabIndex = 14;
@@ -319,7 +319,7 @@
             // PrimeExtrusionTextBox
             // 
             this.PrimeExtrusionTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PrimeExtrusionTextBox.Location = new System.Drawing.Point(96, 75);
+            this.PrimeExtrusionTextBox.Location = new System.Drawing.Point(96, 87);
             this.PrimeExtrusionTextBox.Name = "PrimeExtrusionTextBox";
             this.PrimeExtrusionTextBox.Size = new System.Drawing.Size(211, 20);
             this.PrimeExtrusionTextBox.TabIndex = 15;
@@ -327,7 +327,7 @@
             // PrimeExtrusion2TextBox
             // 
             this.PrimeExtrusion2TextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PrimeExtrusion2TextBox.Location = new System.Drawing.Point(96, 99);
+            this.PrimeExtrusion2TextBox.Location = new System.Drawing.Point(96, 115);
             this.PrimeExtrusion2TextBox.Name = "PrimeExtrusion2TextBox";
             this.PrimeExtrusion2TextBox.Size = new System.Drawing.Size(211, 20);
             this.PrimeExtrusion2TextBox.TabIndex = 16;
@@ -335,7 +335,7 @@
             // PrimeSpeedTextBox
             // 
             this.PrimeSpeedTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PrimeSpeedTextBox.Location = new System.Drawing.Point(96, 123);
+            this.PrimeSpeedTextBox.Location = new System.Drawing.Point(96, 143);
             this.PrimeSpeedTextBox.Name = "PrimeSpeedTextBox";
             this.PrimeSpeedTextBox.Size = new System.Drawing.Size(211, 20);
             this.PrimeSpeedTextBox.TabIndex = 17;
@@ -343,7 +343,7 @@
             // PrimeSpeed2TextBox
             // 
             this.PrimeSpeed2TextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PrimeSpeed2TextBox.Location = new System.Drawing.Point(96, 147);
+            this.PrimeSpeed2TextBox.Location = new System.Drawing.Point(96, 171);
             this.PrimeSpeed2TextBox.Name = "PrimeSpeed2TextBox";
             this.PrimeSpeed2TextBox.Size = new System.Drawing.Size(211, 20);
             this.PrimeSpeed2TextBox.TabIndex = 18;
@@ -351,7 +351,7 @@
             // RetractTextBox
             // 
             this.RetractTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RetractTextBox.Location = new System.Drawing.Point(96, 171);
+            this.RetractTextBox.Location = new System.Drawing.Point(96, 199);
             this.RetractTextBox.Name = "RetractTextBox";
             this.RetractTextBox.Size = new System.Drawing.Size(211, 20);
             this.RetractTextBox.TabIndex = 19;
@@ -359,7 +359,7 @@
             // RetractSpeedTextBox
             // 
             this.RetractSpeedTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RetractSpeedTextBox.Location = new System.Drawing.Point(96, 195);
+            this.RetractSpeedTextBox.Location = new System.Drawing.Point(96, 227);
             this.RetractSpeedTextBox.Name = "RetractSpeedTextBox";
             this.RetractSpeedTextBox.Size = new System.Drawing.Size(211, 20);
             this.RetractSpeedTextBox.TabIndex = 20;
@@ -368,9 +368,9 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(313, 48);
+            this.label10.Location = new System.Drawing.Point(313, 56);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(87, 24);
+            this.label10.Size = new System.Drawing.Size(87, 28);
             this.label10.TabIndex = 22;
             this.label10.Text = "Travel Speed:";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -386,7 +386,7 @@
             // DotSpeedTextBox
             // 
             this.DotSpeedTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DotSpeedTextBox.Location = new System.Drawing.Point(406, 27);
+            this.DotSpeedTextBox.Location = new System.Drawing.Point(406, 31);
             this.DotSpeedTextBox.Name = "DotSpeedTextBox";
             this.DotSpeedTextBox.Size = new System.Drawing.Size(212, 20);
             this.DotSpeedTextBox.TabIndex = 24;
@@ -394,7 +394,7 @@
             // TravelSpeedTextBox
             // 
             this.TravelSpeedTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TravelSpeedTextBox.Location = new System.Drawing.Point(406, 51);
+            this.TravelSpeedTextBox.Location = new System.Drawing.Point(406, 59);
             this.TravelSpeedTextBox.Name = "TravelSpeedTextBox";
             this.TravelSpeedTextBox.Size = new System.Drawing.Size(212, 20);
             this.TravelSpeedTextBox.TabIndex = 25;
@@ -403,7 +403,7 @@
             // 
             this.LineWidthComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LineWidthComboBox.FormattingEnabled = true;
-            this.LineWidthComboBox.Location = new System.Drawing.Point(96, 27);
+            this.LineWidthComboBox.Location = new System.Drawing.Point(96, 31);
             this.LineWidthComboBox.Name = "LineWidthComboBox";
             this.LineWidthComboBox.Size = new System.Drawing.Size(211, 21);
             this.LineWidthComboBox.TabIndex = 26;
@@ -412,7 +412,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label15.Location = new System.Drawing.Point(3, 216);
+            this.label15.Location = new System.Drawing.Point(3, 252);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(87, 33);
             this.label15.TabIndex = 27;
@@ -427,7 +427,7 @@
             this.tableLayoutPanel5.Controls.Add(this.MultiplierTextBox, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.MultiplierHelperButton, 1, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(96, 219);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(96, 255);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -458,10 +458,10 @@
             // 
             this.flowLayoutPanel1.Controls.Add(this.OKButton);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 258);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 294);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(621, 40);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(621, 46);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // OKButton
@@ -621,7 +621,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(641, 333);
+            this.ClientSize = new System.Drawing.Size(641, 375);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Setting";

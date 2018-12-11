@@ -480,7 +480,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(633, 307);
+            this.tabPage2.Size = new System.Drawing.Size(633, 349);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Start Code";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -500,7 +500,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 77.27273F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.63636F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(627, 301);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(627, 343);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // label13
@@ -509,7 +509,7 @@
             this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label13.Location = new System.Drawing.Point(3, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(621, 27);
+            this.label13.Size = new System.Drawing.Size(621, 31);
             this.label13.TabIndex = 0;
             this.label13.Text = "Code:";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -517,20 +517,20 @@
             // StartCodeTextBox
             // 
             this.StartCodeTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.StartCodeTextBox.Location = new System.Drawing.Point(3, 30);
+            this.StartCodeTextBox.Location = new System.Drawing.Point(3, 34);
             this.StartCodeTextBox.Multiline = true;
             this.StartCodeTextBox.Name = "StartCodeTextBox";
-            this.StartCodeTextBox.Size = new System.Drawing.Size(621, 226);
+            this.StartCodeTextBox.Size = new System.Drawing.Size(621, 259);
             this.StartCodeTextBox.TabIndex = 1;
             // 
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.Controls.Add(this.StartCodeOKButton);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 262);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 299);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(621, 36);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(621, 41);
             this.flowLayoutPanel2.TabIndex = 2;
             // 
             // StartCodeOKButton
@@ -549,7 +549,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(633, 307);
+            this.tabPage3.Size = new System.Drawing.Size(633, 349);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "End Code";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -568,17 +568,17 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 77.27273F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.63636F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(627, 301);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(627, 343);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // flowLayoutPanel3
             // 
             this.flowLayoutPanel3.Controls.Add(this.EndCodeOKButton);
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 262);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 299);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(621, 36);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(621, 41);
             this.flowLayoutPanel3.TabIndex = 0;
             // 
             // EndCodeOKButton
@@ -597,7 +597,7 @@
             this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label14.Location = new System.Drawing.Point(3, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(621, 27);
+            this.label14.Size = new System.Drawing.Size(621, 31);
             this.label14.TabIndex = 1;
             this.label14.Text = "Code:";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -605,10 +605,10 @@
             // EndCodeTextBox
             // 
             this.EndCodeTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.EndCodeTextBox.Location = new System.Drawing.Point(3, 30);
+            this.EndCodeTextBox.Location = new System.Drawing.Point(3, 34);
             this.EndCodeTextBox.Multiline = true;
             this.EndCodeTextBox.Name = "EndCodeTextBox";
-            this.EndCodeTextBox.Size = new System.Drawing.Size(621, 226);
+            this.EndCodeTextBox.Size = new System.Drawing.Size(621, 259);
             this.EndCodeTextBox.TabIndex = 2;
             // 
             // toolTip1

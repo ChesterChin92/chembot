@@ -314,7 +314,7 @@ namespace ChemBotOmega
 
         private void Setting_Load_1(object sender, EventArgs e)
         {
-            toolTip1.SetToolTip(MultiplierHelperButton, "2mm - 200" + Environment.NewLine + "3mm - 150");
+            toolTip1.SetToolTip(MultiplierHelperButton, "2mm - 200" + Environment.NewLine + "3mm - 150" + Environment.NewLine + "0.3mm - 10000");
 
             PrintSpeedTextBox.Text = speed.ToString();
             LineWidthComboBox.Text = linewidth.ToString();

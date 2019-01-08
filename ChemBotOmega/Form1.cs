@@ -456,16 +456,16 @@ namespace ChemBotOmega
             bs.Last().ZPoint = Tuple.Create(bs.Last().ZPoint.Item1, CoordZ);
 
             double Z_end = bs.Last().ZPoint.Item2;
-            double Z_start;
+            double Z_start = bs.Last().ZPoint.Item1;
 
-            if (bs.Count() == 1)
-            {
-                Z_start = bs.Last().ZPoint.Item1 + ZHeight;
-            }
-            else
-            {
-                Z_start = bs.Last().ZPoint.Item1;
-            }
+            //if (bs.Count() == 1)
+            //{
+            //    Z_start = bs.Last().ZPoint.Item1 + ZHeight;
+            //}
+            //else
+            //{
+            //    Z_start = bs.Last().ZPoint.Item1;
+            //}
 
             string gcode = "";
 
@@ -477,16 +477,19 @@ namespace ChemBotOmega
             if (Z_end > Z_start)
             {
                 gcode = gcode + "G91" + Environment.NewLine;
-                if (bs.Count() == 1)
-                {
-                    gcode = gcode + "G01 Z" + (ZHeight + Z_end - Z_start) + " F" + TravelSpeed + Environment.NewLine;
-                }
-                else
-                {
-                    gcode = gcode + "G01 Z" + (Z_end - Z_start) + " F" + TravelSpeed + Environment.NewLine;
-                }
+                gcode = gcode + "G01 Z" + (ZHeight + Z_end - Z_start) + " F" + TravelSpeed + Environment.NewLine;
+                //if (bs.Count() == 1)
+                //{
+                //    gcode = gcode + "G01 Z" + (ZHeight * 2 + Z_end - Z_start) + " F" + TravelSpeed + Environment.NewLine;
+                //}
+                //else
+                //{
+                //    gcode = gcode + "G01 Z" + (ZHeight + Z_end - Z_start) + " F" + TravelSpeed + Environment.NewLine;
+                //}
                 gcode = gcode + "G90" + Environment.NewLine;
                 gcode = gcode + "G01 X" + bs.Last().EndPoint.Item1 + " Y" + bs.Last().EndPoint.Item2 + " F" + TravelSpeed + Environment.NewLine;
+                gcode = gcode + "G91" + Environment.NewLine;
+                gcode = gcode + "G01 Z-" + ZHeight + " F" + TravelSpeed + Environment.NewLine;
             }
             else if (Z_end < Z_start)
             {
@@ -495,7 +498,7 @@ namespace ChemBotOmega
                 gcode = gcode + "G90" + Environment.NewLine;
                 gcode = gcode + "G01 X" + bs.Last().EndPoint.Item1 + " Y" + bs.Last().EndPoint.Item2 + " F" + TravelSpeed + Environment.NewLine;
                 gcode = gcode + "G91" + Environment.NewLine;
-                gcode = gcode + "G01 Z-" + (Z_start-Z_end) + " F" + TravelSpeed + Environment.NewLine;
+                gcode = gcode + "G01 Z-" + (ZHeight + Z_start - Z_end) + " F" + TravelSpeed + Environment.NewLine;
             }
             else if(Z_end == Z_start)
             {
